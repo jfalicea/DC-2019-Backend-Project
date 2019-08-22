@@ -1,4 +1,5 @@
 create table company (
+
    id serial primary key not null,
    company_name text UNIQUE not null
 );
@@ -13,3 +14,4 @@ create table employees (
    emp_status boolean,
    company_id integer references company(id) not null
 );
+

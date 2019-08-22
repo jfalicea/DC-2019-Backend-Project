@@ -3,10 +3,10 @@ const bcrypt = require('bcrypt');
 const Swal = require('sweetalert2');
 
 
-async function getUsers() {
+async function getUsers(id) {
     const users = await db.any(`
-        select * from company
-    `);
+        select * from employees where company_id=$1
+    `, [id]);
 
     return users;
 }
@@ -38,27 +38,46 @@ async function getAll(id) {
 async function createUser({ first_name, last_name, email, company_name, password }) {
     try {
         const hash = bcrypt.hashSync(password, 10);
-
         const checkUser = await db.any(`
     
-            select * from company where email = $1
+            select * from company where company_name=$1
     
-        `, [email]);
-    
-        const newUserInfo = await db.one(`
+        `, [company_name]);
+        
+        const company = await db.one(`
     
             insert into company
-                (first_name, last_name, email, company_name, password)
-            values ($1, $2, $3, $4, $5)
+                (company_name)
+            values ($1)
     
             returning id
     
-        `, [first_name, last_name, email, company_name, hash]);
+        `, [company_name]);
+
+        const refId = await db.one(`
+        
+            select id from company where company_name=$1
+
+        `, [company_name]);
+        console.log('%%%%%%%%%');
+        console.log(refId);
+        console.log(refId.id);
+
+        const employeesForCompany = await db.one(`
+            insert into employees
+                (first_name, last_name, email, password, company_id)
+            values ($1, $2, $3, $4, $5)
+
+            returning id
+
+        `, [first_name, last_name, email, hash, refId.id]);
+        
+        company.employees = employeesForCompany;
 
         if(checkUser.length > 0) {
             return 'Error: User Exists';
         } else {
-            return newUserInfo;
+            return company;
         }
 
     } catch (error) {
@@ -77,9 +96,18 @@ async function checkQuery(req) {
 
         const query = await db.one(`
 
-            SELECT * FROM company WHERE email=$1
+            SELECT * FROM employees WHERE email=$1
 
        `, [email]);
+
+       const refId = await db.one(`
+
+            select company_id from employees where email=$1
+
+       `, [email]);
+
+       console.log('lskdjflskdjflksd------klsdflkdsjdslkj');
+       console.log(refId);
 
         const correctPass = bcrypt.compareSync(password, query.password);
         console.log(correctPass);
@@ -87,7 +115,8 @@ async function checkQuery(req) {
         if (correctPass) {
             return {
                 email: query.email,
-                id: query.id
+                id: query.id,
+                ref_id: refId.company_id
             };
         } else {
             return {

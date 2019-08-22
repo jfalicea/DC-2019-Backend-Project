@@ -3,7 +3,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  const passwordFail = req.query.msg === 'badPass' ? true : false;
+  res.render('index', { passwordFail });
 });
 
 router.get('/app', function (req, res) {

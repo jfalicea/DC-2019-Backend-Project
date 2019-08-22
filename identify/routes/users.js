@@ -16,13 +16,10 @@ const sessionOptions = {
 router.use(expressSession(sessionOptions));
 
 router.all('*', (req, res, next) => {
-  console.log(req.session);
-  if((!req.session.email) && (req.url !== '/login')){
-    res.redirect('/login')
-  }else{
-    console.log(req.session.email);
-    console.log(User.getAll(1).email);
+  if((req.session.loggedin === true) || (req.url === '/login') || (req.url === '/loginProcess') || (req.url === '/registerProcess')){
     next();
+  }else{
+    res.redirect('/login');
   }
 });
 
@@ -45,7 +42,9 @@ router.post('/registerProcess', [
 });
 
 router.get('/database', async (req, res) => {
-  const userData = await User.getUsers();
+  console.log(req.session.user_id);
+  const sessionId = req.session.user_id;
+  const userData = await User.getUsers(sessionId);
   const parsedData = JSON.stringify(userData);
   res.render('database', {
     title: 'Database',
@@ -58,15 +57,15 @@ router.post('/loginProcess', [
   sanitizeBody('password').escape(),
 ], async (req, res) => {
   const checkUserQuery = await User.checkQuery(req);
-  console.log(checkUserQuery.id);
+  console.log('-----');
+  console.log(checkUserQuery.company_id);
   if (checkUserQuery.id > 0) {
     req.session.loggedin = true;
     req.session.email = checkUserQuery.emails;
-    console.log(req.session.email);
-    req.session.iq = checkUserQuery.id;
+    req.session.user_id = checkUserQuery.ref_id;
     res.redirect(`/users/database`);
   } else {
-    res.redirect('/login?msg=badPass');
+    res.redirect('../../?msg=badPass');
   }
 
 });

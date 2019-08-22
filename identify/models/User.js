@@ -1,11 +1,21 @@
 const db = require('../db');
 const bcrypt = require('bcrypt');
+const Swal = require('sweetalert2');
+
+
+async function getUsers() {
+    const users = await db.any(`
+        select * from company
+    `);
+
+    return users;
+}
 
 async function getAll(id) {
     try {
 
         const user = await db.one(`
-            select * from users where id=$1    
+            select * from company where id=$1    
         `, [id]);
         // const userFavorites = await db.any(`
         //     select * from favorites where user_id=$1
@@ -19,57 +29,32 @@ async function getAll(id) {
         console.log('ERROR');
         return {
             id: 0,
-            displayname: 'Sorry, no user found.'
+            email: 'Sorry, no user found.'
         }
         
     }
 }
 
-// async function getFavorites(id) {
-//     try {
-
-//         const user = await db.one(`
-//             select * from users where id=$1
-//         `, [id]);
-//         const userFavorites = await db.one(`
-//             select * from favorites where user_id=$1
-//         `, [id]);
-
-//         user.favorites = userFavorites;
-//         return user;
-
-//     } catch (error) {
-
-//         console.log('ERROR');
-//         return {
-//             id: 0,
-//             displayname: 'Sorry, no user found.'
-//         }
-
-//     }
-// }
-
-async function createUser({ username, email, password }) {
+async function createUser({ first_name, last_name, email, company_name, password }) {
     try {
-
         const hash = bcrypt.hashSync(password, 10);
 
         const checkUser = await db.any(`
     
-            select * from users where username = $1 OR email = $2
+            select * from company where email = $1
     
-        `, [username, email]);
+        `, [email]);
     
         const newUserInfo = await db.one(`
     
-            insert into users
-                (username, email, password)
-            values ($1, $2, $3)
+            insert into company
+                (first_name, last_name, email, company_name, password)
+            values ($1, $2, $3, $4, $5)
     
             returning id
     
-        `, [username, email, hash]);
-    
+        `, [first_name, last_name, email, company_name, hash]);
+
         if(checkUser.length > 0) {
             return 'Error: User Exists';
         } else {
@@ -77,8 +62,7 @@ async function createUser({ username, email, password }) {
         }
 
     } catch (error) {
-
-        console.log('ERROR');
+        console.log(error);
         return {
             msg: "Unable to create user."
         }
@@ -87,45 +71,43 @@ async function createUser({ username, email, password }) {
 }
 
 async function checkQuery(req) {
-    const username = req.body.username;
+    const email = req.body.email;
     const password = req.body.password;
     try{
 
         const query = await db.one(`
 
-            SELECT * FROM users WHERE username=$1
+            SELECT * FROM company WHERE email=$1
 
-       `, [username]);
+       `, [email]);
 
-        // console.log(req.session.username);
         const correctPass = bcrypt.compareSync(password, query.password);
         console.log(correctPass);
 
         if (correctPass) {
             return {
-                username: query.username,
                 email: query.email,
                 id: query.id
-            }
+            };
         } else {
             return {
-                message: 'Sorry this user doesnt exist or the password was incorrect',
-                username: 'Error',
-                email: 'Error',
-                id: 0
-            }
+                message: 'Sorry this user doesnt exist or the password was incorrect'
+            };
         }
 
     } catch (error) {
 
         console.log('ERROR');
-        return 'error';
+        return {
+            message: 'Error'
+        }
 
     }
 }
 
 module.exports = {
 
+    getUsers,
     getAll,
     createUser,
     checkQuery

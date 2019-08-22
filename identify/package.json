@@ -5,8 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "db:reset": "dropdb identifydb; bash create-db.sh",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "debug": "node --inspect-brk index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
@@ -20,6 +19,7 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "pg-promise": "^9.0.3",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "sweetalert2": "^8.16.2"
   }
 }

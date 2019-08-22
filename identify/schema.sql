@@ -12,4 +12,6 @@ create table employees (
    password text not null,
    user_role boolean,
    emp_status boolean,
-   company_id integer references company(id)
+   company_id integer references company(id) not null
+);
+

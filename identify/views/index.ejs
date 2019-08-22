@@ -1,69 +1,83 @@
 <% include head %>
 <body>
-  <div class="container-left">
-    <div class="introduction">
-        <div class="logo">
-            Insta.id
-        </div>
-        <div class="intro-div">
-          WHO WE ARE
-        </div>
-        <div class="intro-div">
-          WHAT WE DO
-        </div>
-      </div>
+
+<div class="main-container">
+  <div class="left">
+
+    <div class="center">
+    <div class="logo">
+      <h1>Insta.id</h1>
+
+    </div>
+
     <div class="login">
-      <form action="/users/loginProcess" method="post">
-        <div class="field-login">
-        <label>Email</label>
-        <input type="text" name="email" class="form-control">
+    <form action="/users/loginProcess" method="post">
+
+      <!-- <div class="field-login"> -->
+      <label>Email</label>
+      <input type="text" name="email" class="form-control">
+      <!-- </div> -->
+
+      <!-- <div class="field-login"> -->
+      <label>Password</label>
+      <input type="text" name="password" class="form-control">
+      <!-- </div> -->
+
+      <div class="button-div">
+      <input type="submit" class="button" value="LOGIN">
+      <a href="" class="forgot">FORGOT<br>PASSWORD?</a>
+      </div>
+
+    </form>
+    </div> <!-- end of login div-->
+
+    </div> <!-- end of center-->
+  </div> <!-- end of left container-->
+
+  <div class="right">
+
+      <div class="logo-right">
+      <h2>Insta.id</h2>
+      </div>
+
+      <div class="registercontainer">
+        <h1>REGISTER</h1>
+          <form action="/users/registerProcess" method="post" class="register">
+            <label>NAME</label>
+
+            <div class="name-field">
+            <input type="text" name="first_name" class="form-control reg" placeholder="First Name">&nbsp;&nbsp;&nbsp;
+            <input type="text" name="last_name" class="form-control reg" placeholder="Last Name">
+            </div>
+            
+            <label>EMAIL</label>
+            <input type="email" name="email" class="form-control reg" placeholder="johndoe@example.com">
+
+            <label>COMPANY NAME</label>
+            <input type="text" name="company_name" class="form-control reg" placeholder="Company">
+            
+            <label>PASSWORD</label>
+            <input type="password" name="password" class="form-control reg" placeholder="password">
+            <label>RE-ENTER</label>
+
+            <input type="password" name="password2" class="form-control reg" placeholder="password">
+            <input type="submit" class="button" value="SIGN ME UP">
+          </form>
         </div>
-        <div class="field-login">
-        <label>Password</label>
-        <input type="text" name="password" class="form-control">
-        </div>
-        <div class="button-div">
-        <input type="submit" class="login-button" value="LOGIN">
-        <a href="" class="forgot <%= passwordFail ? 'shake' : '' %>">FORGOT<br>PASSWORD?</a>
-        </div>
-     </form>
+        
     </div>
+  </div> <!-- end of right container-->
+
+</div> <!-- end of large container -->
+
+<footer id= "footer">
+  <div class="items">
+    <a href="#">WHO WE ARE</a>
+    <a href="#">WHAT WE DO</a>
+    <a href="#">CONTACT US</a>
   </div>
-    <div class="container-right">
-      <h1>REGISTER</h1>
-      <form action="/users/registerProcess" method="post">
-        <label>NAME</label>
-        <div class="name-field">
-        <input type="text" name="first_name" class="form-control reg" placeholder="First Name">&nbsp;&nbsp;&nbsp;
-        <input type="text" name="last_name" class="form-control reg" placeholder="Last Name">
-        </div>
-        <label>EMAIL</label>
-        <input type="email" name="email" class="form-control reg" placeholder="johndoe@example.com">
-        <label>COMPANY NAME</label>
-        <input type="text" name="company_name" class="form-control reg" placeholder="Company">
-        <label>PASSWORD</label>
-        <input type="password" name="password" class="form-control reg" placeholder="password">
-        <label>RE-ENTER</label>
-        <input type="password" name="password2" class="form-control reg" placeholder="password">
-        <input type="submit" class="register-login" value="SIGN ME UP">
-      </form>
-      <div class="contact">
-        <div class="contact-sign">
-          contact us
-        </div>
-        <div class="symbol">
-          |
-        </div>
-        <div class="contact-info">
-          <div class="contact-number">
-            (678) 222 - 333
-          </div>
-          <div class="contact-email">
-            Insta.id@gmail.com
-          </div>
-        </div>
-        </div>
-    </div>
-  </div>
+
+</footer>
+
 </body>
 </html>

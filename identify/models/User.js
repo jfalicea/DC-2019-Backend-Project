@@ -3,10 +3,10 @@ const bcrypt = require('bcrypt');
 const Swal = require('sweetalert2');
 
 
-async function getUsers() {
+async function getUsers(id) {
     const users = await db.any(`
-        select * from employees
-    `);
+        select * from employees where company_id=$1
+    `, [id]);
 
     return users;
 }
@@ -54,14 +54,23 @@ async function createUser({ first_name, last_name, email, company_name, password
     
         `, [company_name]);
 
+        const refId = await db.one(`
+        
+            select id from company where company_name=$1
+
+        `, [company_name]);
+        console.log('%%%%%%%%%');
+        console.log(refId);
+        console.log(refId.id);
+
         const employeesForCompany = await db.one(`
             insert into employees
-                (first_name, last_name, email, password)
-            values ($1, $2, $3, $4)
+                (first_name, last_name, email, password, company_id)
+            values ($1, $2, $3, $4, $5)
 
             returning id
 
-        `, [first_name, last_name, email, hash]);
+        `, [first_name, last_name, email, hash, refId.id]);
         
         company.employees = employeesForCompany;
 
@@ -91,13 +100,23 @@ async function checkQuery(req) {
 
        `, [email]);
 
+       const refId = await db.one(`
+
+            select company_id from employees where email=$1
+
+       `, [email]);
+
+       console.log('lskdjflskdjflksd------klsdflkdsjdslkj');
+       console.log(refId);
+
         const correctPass = bcrypt.compareSync(password, query.password);
         console.log(correctPass);
 
         if (correctPass) {
             return {
                 email: query.email,
-                id: query.id
+                id: query.id,
+                ref_id: refId.company_id
             };
         } else {
             return {

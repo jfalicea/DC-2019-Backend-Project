@@ -19,7 +19,6 @@ router.all('*', (req, res, next) => {
   if((req.session.loggedin === true) || (req.url === '/login') || (req.url === '/loginProcess') || (req.url === '/registerProcess')){
     next();
   }else{
-    console.log('??????');
     res.redirect('/login');
   }
 });
@@ -43,7 +42,9 @@ router.post('/registerProcess', [
 });
 
 router.get('/database', async (req, res) => {
-  const userData = await User.getUsers();
+  console.log(req.session.user_id);
+  const sessionId = req.session.user_id;
+  const userData = await User.getUsers(sessionId);
   const parsedData = JSON.stringify(userData);
   res.render('database', {
     title: 'Database',
@@ -57,11 +58,11 @@ router.post('/loginProcess', [
 ], async (req, res) => {
   const checkUserQuery = await User.checkQuery(req);
   console.log('-----');
-  console.log(checkUserQuery.id);
+  console.log(checkUserQuery.company_id);
   if (checkUserQuery.id > 0) {
     req.session.loggedin = true;
     req.session.email = checkUserQuery.emails;
-    req.session.id = checkUserQuery.id;
+    req.session.user_id = checkUserQuery.ref_id;
     res.redirect(`/users/database`);
   } else {
     res.redirect('../../?msg=badPass');

@@ -15,15 +15,16 @@ const sessionOptions = {
 
 router.use(expressSession(sessionOptions));
 
-// router.all('*', (req, res, next) => {
-//   if((!req.session.email) && (req.url !== '/login')){
-//     res.redirect('/login')
-//   }else{
-//     console.log(req.session.email);
-//     console.log(User.getAll(1).email);
-//     next();
-//   }
-// });
+router.all('*', (req, res, next) => {
+  console.log(req.session);
+  if((!req.session.email) && (req.url !== '/login')){
+    res.redirect('/login')
+  }else{
+    console.log(req.session.email);
+    console.log(User.getAll(1).email);
+    next();
+  }
+});
 
 /* GET users listing. */
 router.get('/', function(req, res) {
@@ -61,6 +62,7 @@ router.post('/loginProcess', [
   if (checkUserQuery.id > 0) {
     req.session.loggedin = true;
     req.session.email = checkUserQuery.emails;
+    console.log(req.session.email);
     req.session.iq = checkUserQuery.id;
     res.redirect(`/users/database`);
   } else {

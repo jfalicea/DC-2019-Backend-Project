@@ -1,159 +1,169 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
+  font-size: .8rem;
 }
-.container-left {
-  display: flex;
-  flex-direction: row;
-  width: 65%;
+
+a {
+  color: ;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+
+.main-container {
+  width: 100vw;
+}
+
+.left {
+  padding: 2rem;
+  background: url('../img/room-l9QPabiKKhw-unsplash.jpg') center no-repeat;
+  background-size: cover; 
   height: 100vh;
-  background-color: navy;
 }
-.field-login {
-  display: flex;
-  flex-direction: column;
+
+.center {
+  width: 80%;
+  margin: auto;
+}
+
+.logo {
+  text-align: center;
+  color: #031F4B;
+}
+
+
+.logo > h1 {
+  font-size: 3rem;
+}
+
+
+.forgot {
+  color: #031F4B;
+}
+
+
+.button {
+  background-color: #031F4B;
+  color: #C8D3D5;
+  padding: .5rem 1.5rem;
   margin: 5px;
-  color: white;
+  border: none;
+  border-radius: 30px;
 }
-.login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+.form-control {
+  border-radius: 30px;
 }
-.login-button {
-  font-weight: bolder;
-  background-color: rgb(184, 223, 238);
-  color: blue;
-  padding: 10px;
-  width: 120px;
-  height: 40px;
-  font-size: 15px;
-  border-radius: 5px;
-  margin: 5px;
-  transition: 0.5s;
+
+
+.button:hover {
+  background-color: #C8D3D5;
+  color: #031F4B;
+  transition: 1s;
 }
-.login-button:hover {
-  cursor: pointer;
-  color: red;
-  transition: 0.5s;
-}
+
+
 .button-div {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-.forgot {
-  text-decoration: none;
-  text-align: right;
-  color: rgb(184, 223, 238);
-  transition: 0.5s;
-}
-.forgot:hover {
-  text-decoration: none;
-  color: red;
-  transition: .5s;
-}
-.introduction {
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
-  align-items: stretch;
-  width: 65%;
-  font-size: 20px;
-  padding: 40px;
-  color: white;
-}
-.logo {
-  display: flex;
-  align-items: center;
-  font-weight: bolder;
-  font-size: 100px;
-  padding: 15px;
-}
-.intro-div {
-  display: flex;
-  flex-grow: 1;
-  padding: 15px;
-  font-size: 40px;
-}
-.container-right {
-  display: flex;
-  flex-direction: column;
-  width: 35%;
-  height: 100vh;
-  padding: 35px;
-  font-weight: bolder;
-  background-color: rgb(184, 223, 238);
-  color: navy;
   justify-content: space-around;
-}
-.name-field {
-  display: flex;
-  flex-direction: row;
-}
-.form-control {
-  border-radius: 25px;
-}
-.reg {
-  /* background-color: rgb(228, 226, 226); */
-  margin-bottom: 20px;
-}
-.register-login {
-  border-radius: 5px;
-  height: 40px;
-  width: 180px;
-  background-color: navy;
-  color: rgb(184, 223, 238);
-  font-size: 18px;
-  transition: 0.5s;
-}
-.register-login:hover {
-  cursor: pointer;
-  color: red;
-  transition: 0.5s;
-}
-footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: dodgerblue;
-  height: 75px;
-  width: 100%;
-  padding: 30px;
   align-items: center;
-  color: white;
 }
-.bottom-logo {
-  font-size: 25px;
-}
-.contact {
+
+
+.name-field{
   display: flex;
-  flex-direction: row;
+}
+
+.registercontainer {
+  width: 90%;
+  margin: auto;
+}
+
+.right {
+  padding: 2rem;
+  background-color: #C8D3D5;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.logo-right {
+  margin-bottom: 50px;
+}
+
+
+
+label {
+  padding-top: .6rem ;
+}
+
+
+#footer {
+  background-color: #031F4B;
+  color: #C8D3D5;
+  height: 10vh;
+  width: 100vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.items {
+  display: flex;
   justify-content: center;
   align-items: center;
 }
-.contact-sign {
-  font-size: 25px;
-  margin: 10px;
+
+.items > a {
+  padding: 0 2rem;
+  color: #C8D3D5;
 }
-.symbol {
-  font-size: 50px;
-  font-weight: bolder;
-  margin: 10px;
+
+
+@media screen and (min-width: 768px) {
+
+
+
 }
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  font-size: 15px;
-  margin: 10px;
+
+
+@media screen and (min-width: 992px) {
+  .main-container {
+    display: flex;
+    height: 100vh;
+  }
+
+  .left {
+    width: 60vw;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .right {
+      width: 40vw;
+  }
+
+  .logo > h1 {
+    font-size: 8rem;
 }
-.contact-number {
-  padding: 2px;
+
+.registercontainer {
+  width: 60%;
+  margin: auto;
 }
-.contact-email {
-  padding: 2px;
+
+
 }

@@ -16,13 +16,11 @@ const sessionOptions = {
 router.use(expressSession(sessionOptions));
 
 router.all('*', (req, res, next) => {
-  console.log(req.session);
-  if((!req.session.email) && (req.url !== '/login')){
-    res.redirect('/login')
-  }else{
-    console.log(req.session.email);
-    console.log(User.getAll(1).email);
+  if((req.session.loggedin === true) || (req.url === '/login') || (req.url === '/loginProcess') || (req.url === '/registerProcess')){
     next();
+  }else{
+    console.log('??????');
+    res.redirect('/login');
   }
 });
 
@@ -58,15 +56,15 @@ router.post('/loginProcess', [
   sanitizeBody('password').escape(),
 ], async (req, res) => {
   const checkUserQuery = await User.checkQuery(req);
+  console.log('-----');
   console.log(checkUserQuery.id);
   if (checkUserQuery.id > 0) {
     req.session.loggedin = true;
     req.session.email = checkUserQuery.emails;
-    console.log(req.session.email);
-    req.session.iq = checkUserQuery.id;
+    req.session.id = checkUserQuery.id;
     res.redirect(`/users/database`);
   } else {
-    res.redirect('/login?msg=badPass');
+    res.redirect('../../?msg=badPass');
   }
 
 });

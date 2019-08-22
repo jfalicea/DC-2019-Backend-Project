@@ -1,16 +1,23 @@
 insert into company
-    (first_name, last_name, email, company_name, password)
+    (name, password)
 VALUES
-    ('John', 'Brown', 'jb@gmail.com', 'Google', 'aldjfs283094ljsdf'),
-    ('Steve', 'Jobs', 'jobs@gmail.com', 'Apple', 'sldkfjlj234'),
-    ('Bob', 'Marley', 'marley@gmail.com', 'Reggae', 'lskdjfiwoeru23'),
-    ('Kurt', 'Cobain', 'kc@gmail.com', 'Nirvana', 'sdlkfj230948'),
-    ('John', 'Frusciante', 'jfrusciante@gmail.com', 'RHCP', 'dslkj203948lksdfj'),
-    ('Anthony', 'Davis', 'antdavis@gmail.com', 'Lakers', 'dslkfjslk20394'),
-    ('LeBron', 'James', 'lbj@gmail.com', 'Lakers', 'dslkjlskdjfs098324'),
-    ('Leo', 'DiCaprio', 'leo@gmail.com', 'Titanic', 'lksdfks098234');
+    ('Google'),
+    ('Apple'),
+    ('Microsoft');
 
--- insert into employees
---     (first_name, last_name, email, password, app_role, status, company_id)
--- VALUES
---     ('Eugene', 'Kim', 'ekim1707@gmail.com', 'arch7onS.', False, True, 1);
+
+INSERT INTO employees
+    (first_name, last_name, email, password, user_role, emp_status, company_id)
+VALUES
+    ('Eugene', 'Kim', 'ekim@google.com', 'pass123', True, True, 1),
+    ('Tracy', 'N', 'tracy@apple.com', 'pass123', True, True, 2),
+    ('Jonathan', 'A', 'jonathan@microsoft.com', 'pass123', True, True, 3),
+        ('Jane', 'Doe-google', 'janedoe@google.com', 'pass123', False, True, 1),
+        ('John', 'Doe-google', 'johndoen@google.com', 'pass123', False, True, 1),
+        ('John', 'Doe-apple', 'johndoe@apple.com', 'pass123', False, True, 2),
+        ('Jane', 'Doe-apple', 'janedoe@apple.com', 'pass123', False, True, 2),
+        ('Steve', 'Doe-microsoft', 'stevedoe@microsoft.com', 'pass123', False, True, 3),
+        ('Stephanie', 'Doe-microsoft', 'stephdoe@microsoft.com', 'pass123', False, True, 3);
+
+
+

@@ -9,9 +9,33 @@ body {
   font-size: .8rem;
 }
 
-/* a {
-  color: ;
-} */
+a:hover {
+  text-decoration: none;
+}
+
+
+.main-container {
+  width: 100vw;
+}
+
+.left {
+  padding: 2rem;
+  background: url('../img/room-l9QPabiKKhw-unsplash.jpg') center no-repeat;
+  background-size: cover; 
+  height: 100vh;
+}
+
+.center {
+  width: 80%;
+  margin: auto;
+}
+
+.logo {
+  text-align: center;
+  color: #031F4B;
+}
+
+
 
 a:hover {
   text-decoration: none;
@@ -38,6 +62,7 @@ a:hover {
   text-align: center;
   color: #031F4B;
 }
+
 
 
 .logo > h1 {
@@ -132,6 +157,7 @@ label {
   color: #C8D3D5;
 }
 
+
 .shake {
   animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
   transform: translate3d(0, 0, 0);
@@ -139,28 +165,12 @@ label {
   perspective: 1000px;
 }
 
-@keyframes shake {
-  10%, 90% {
-    transform: translate3d(-1px, 0, 0);
-  }
+@media screen and (min-width: 768px) {
 
-  20%, 80% {
-    transform: translate3d(2px, 0, 0);
-  }
 
-  30%, 50%, 70% {
-    transform: translate3d(-4px, 0, 0);
-  }
 
-  40%, 60% {
-    transform: translate3d(4px, 0, 0);
-  }
+
 }
-/* @media screen and (min-width: 768px) {
-
-
-
-} */
 
 
 @media screen and (min-width: 992px) {
@@ -178,6 +188,26 @@ label {
   .right {
       width: 40vw;
   }
+
+}
+
+
+@media screen and (min-width: 992px) {
+  .main-container {
+    display: flex;
+    height: 100vh;
+  }
+
+  .left {
+    width: 60vw;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .right {
+      width: 40vw;
+  }
+
 
   .logo > h1 {
     font-size: 8rem;

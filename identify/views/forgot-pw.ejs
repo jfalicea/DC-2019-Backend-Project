@@ -18,10 +18,17 @@ body {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8.16.3/dist/sweetalert2.css">
     <script> 
     Swal.fire({
-        title: 'Success!',
-        text: 'New User Created',
-        type: 'success',
-        html:'<a class="btn btn-primary" href="./database">Continue</a>',
+        title: 'Enter Your Email:',
+        type: 'info',
+        html:`
+        <form action="./retrieve" method="post">
+
+        <input type="text" name="email" class="form-control">
+        <br>
+        <input type="submit" class="btn btn-primary" value="SUBMIT">
+
+        </form>
+        `,
         showConfirmButton: false
         });
     </script>

@@ -19,11 +19,10 @@ router.all('*', (req, res, next) => {
   if((req.session.loggedin === true) || (req.url === '/login') || (req.url === '/loginProcess') || (req.url === '/registerProcess')){
     next();
   }else{
-    res.redirect('/login');
+    res.redirect('../');
   }
 });
 
-/* GET users listing. */
 router.get('/', function(req, res) {
   res.send('hello');
 });
@@ -35,21 +34,45 @@ router.post('/registerProcess', [
   sanitizeBody('company_name').escape(),
   sanitizeBody('password').escape(),
 ], async (req, res) => {
-  console.log(req.body);
- const newUserInfo = await User.createUser(req.body);
- console.log(newUserInfo);
+ const newUserInfo = await User.checkUser(req.body);
+  req.session.loggedin = true;
+  req.session.user_id = newUserInfo.id;
+  if(newUserInfo.msg === 'error'){
+  res.render('reg-failure');
+  } else {
   res.render('reg-success');
+  }
 });
 
 router.get('/database', async (req, res) => {
-  console.log(req.session.user_id);
   const sessionId = req.session.user_id;
   const userData = await User.getUsers(sessionId);
   const parsedData = JSON.stringify(userData);
   res.render('database', {
     title: 'Database',
+    user_id: userData[0].id,
+    first_name: userData[0].first_name,
+    last_name: userData[0].last_name,
+    email: userData[0].email,
+    role: userData[0].role,
+    status: userData[0].status,
     data: parsedData
   });
+});
+
+router.post('/database/update', [
+  sanitizeBody('first_name').escape(),
+  sanitizeBody('last_name').escape(),
+  sanitizeBody('email').escape(),
+  sanitizeBody('user_role').escape(),
+  sanitizeBody('emp_status').escape(),
+], async (req, res) => {
+  const addedEmployee = await User.adminCreate(req.body, req.session.user_id);
+    console.log('---===----');
+    console.log(addedEmployee);
+  res.render('database', {
+  });
+  
 });
 
 router.post('/loginProcess', [
@@ -57,11 +80,8 @@ router.post('/loginProcess', [
   sanitizeBody('password').escape(),
 ], async (req, res) => {
   const checkUserQuery = await User.checkQuery(req);
-  console.log('-----');
-  console.log(checkUserQuery.company_id);
   if (checkUserQuery.id > 0) {
     req.session.loggedin = true;
-    req.session.email = checkUserQuery.emails;
     req.session.user_id = checkUserQuery.ref_id;
     res.redirect(`/users/database`);
   } else {

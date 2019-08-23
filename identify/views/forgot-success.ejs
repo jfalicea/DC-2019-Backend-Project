@@ -18,10 +18,13 @@ body {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8.16.3/dist/sweetalert2.css">
     <script> 
     Swal.fire({
-        title: 'Success!',
-        text: 'New User Created',
+        title: 'Got it!',
         type: 'success',
-        html:'<a class="btn btn-primary" href="./database">Continue</a>',
+        html:`
+        <div>Your password reset directions have been <br> 
+            sent to the email address provided.</div> <br>
+        <a class="btn btn-primary" href="./">Continue</a>
+        `,
         showConfirmButton: false
         });
     </script>

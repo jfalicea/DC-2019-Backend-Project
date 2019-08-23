@@ -1,9 +1,91 @@
-<% include head %>
+<% include dbhead %>
 <body>
-    <div class="database">
-        Database page goes here
-        <br>
-        <%= data %>
+    <div class="main-container">
+    <% include navbar %>
+    <form class="hidden" action="/users/database/update" method="post">
+        <div class="input_fields">
+
+            <input type="text" name="first_name" class="form-control" placeholder="First Name">
+
+            <input type="text" name="last_name" class="form-control" placeholder="Last Name">
+
+            <input type="text" name="email" class="form-control" placeholder="Email">
+
+            <input type="text" name="user_role" class="form-control" placeholder="Role">
+
+            <input type="text" name="emp_status" class="form-control" placeholder="Status">
+        
+            <div class="button-div">
+                <input type="submit" class="btn btn-secondary" value="SUBMIT">
+            </div>
+
+        </div>
+    </form>
+        <div class="small-container">
+            <div class="label">
+            employees
+            </div>
+            <br>
+            <div class="database">
+                <div class="data-col">
+                    <div class="table-headers">
+                        id<hr>
+                    </div>
+                <%= user_id %>
+                </div>
+                <div class="data-col">
+                    <div class="table-headers">
+                        first name<hr>
+                    </div>
+                <%= first_name %>
+                </div>
+                <div class="data-col">
+                    <div class="table-headers">
+                        last name<hr>
+                    </div>
+                <%= last_name %>
+                </div>
+                <div class="data-col">
+                    <div class="table-headers">
+                        email<hr>
+                    </div>
+                <%= email %>
+                </div>
+                <div class="data-col">
+                    <div class="table-headers">
+                        role<hr>
+                    </div>
+                    Admin
+                <%= role %>
+                </div>
+                <div class="data-col">
+                    <div class="table-headers">
+                        status<hr>
+                    </div>
+                    active
+                <%= status %>
+                </div>
+            </div>
+        </div>
     </div>
+<script>
+$(document).ready(function () {
+
+    const $toggles = $("form");
+    console.log($toggles.class);
+    const controlClick = (e) => {
+
+        const el = e.target;
+
+        if (el.id === "add") {            
+            $toggles.toggleClass('hidden');
+        }
+
+    }
+
+    window.addEventListener('click', controlClick);
+
+});
+</script>
 </body>
 </html>

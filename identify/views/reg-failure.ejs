@@ -18,10 +18,15 @@ body {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8.16.3/dist/sweetalert2.css">
     <script> 
     Swal.fire({
-        title: 'Success!',
-        text: 'New User Created',
-        type: 'success',
-        html:'<a class="btn btn-primary" href="./database">Continue</a>',
+        title: 'Error!',
+        text: 'Company exists',
+        type: 'warning',
+        html:`
+        <div>The account belonging to either the provided<br> 
+            company name or email address already exists.<br><br>
+            Please try again.</div> <br>
+        <a class="btn btn-primary" href="../">Continue</a>
+        `,
         showConfirmButton: false
         });
     </script>

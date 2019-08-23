@@ -1,0 +1,116 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    color: navy;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.navbar {
+    display: flex;
+    width: 20vw;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: whitesmoke;
+}
+
+.logo {
+    font-size: 40px;
+    margin-bottom: 15vh;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+a, .toggles {
+    text-decoration: none;
+    color: navy;
+    padding: 1vh;
+    transition: 1s;
+}
+
+a:hover, .toggles:hover {
+    text-decoration: none;
+    color: skyblue;
+    transition: 1s;
+    cursor: pointer;
+}
+
+.small-container {
+    display: flex;
+    width: 80vw;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+.label {
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+    height: 20vh;
+    font-size: 40px;
+    text-align: left;
+    justify-content: flex-end;
+}
+.database {
+    display: flex;
+    width: 60vw;
+    height: 75vh;
+    background-color: whitesmoke;
+    flex-flow: row nowrap;
+    justify-content: stretch;
+}
+.data-col {
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: stretch;
+    align-items: center;
+    color: gray;
+}
+.table-headers {
+    width: 100%;
+    padding: 5px;
+    color: navy;
+    text-align: center;
+}
+hr {
+    padding: 0;
+    margin: 0;
+    border: 1px solid navy;
+    display: block;
+}
+
+form {
+    display: flex;
+    justify-content: flex-start;
+    position: absolute;
+    width: 70vw;
+    top: 1vh;
+    right: 0;
+}
+
+.input_fields {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 65vw;
+}
+
+.button-div {
+    width: 5vw;
+}
+
+.hidden {
+    display: none;
+}

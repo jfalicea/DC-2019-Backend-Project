@@ -1,0 +1,201 @@
+/* TRACY */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  font-size: .8rem;
+  color: #031F4B;
+}
+
+a {
+  color: ;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+
+.main-container {
+  width: 100vw;
+}
+
+.left {
+  padding: 2rem;
+  background: url('../img/room-l9QPabiKKhw-unsplash.jpg') center no-repeat;
+  background-size: cover; 
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  width: 90%;
+  margin: auto;
+}
+
+.logo {
+  text-align: center;
+  color: #031F4B;
+  margin-top: 50px;
+}
+
+
+.logo > h1 {
+  font-size: 3rem;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 80px;
+}
+
+.forgot {
+  color: #031F4B;
+}
+
+
+.button {
+  background-color: #031F4B;
+  color: #C8D3D5;
+  padding: .5rem 1.5rem;
+  margin: 5px;
+  border: none;
+  border-radius: 30px;
+}
+
+.form-control {
+  border-radius: 2rem;
+  box-shadow: 0px 0px 5px grey;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+
+.button:hover {
+  background-color: 
+  color: #031F4B;
+  transition: 1s;
+}
+
+
+.button-div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+.name-field{
+  display: flex;
+}
+
+.registercontainer {
+  width: 90%;
+  margin: auto;
+}
+
+.right {
+  padding: 2rem;
+  background-color: #C8D3D5;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.logo-right {
+  margin-bottom: 50px;
+}
+
+
+
+label {
+  padding-top: .6rem ;
+}
+
+
+#footer {
+  background-color: #031F4B;
+  color: #C8D3D5;
+  height: 10vh;
+  width: 100vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.items > a {
+  padding: 0 2rem;
+  color: #C8D3D5;
+}
+.shake {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@media screen and (min-width: 768px) {
+  
+  .main-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .left {
+    width: 60vw;
+    /* display: flex;
+    justify-content: space-between; */
+  }
+
+}
+
+
+@media screen and (min-width: 992px) {
+
+
+ 
+
+  .center {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+
+  }
+
+  .right {
+      width: 40vw;
+  }
+
+
+
+  .logo > h1 {
+    font-size: 6rem;
+}
+
+.registercontainer {
+  width: 60%;
+  margin: auto;
+}
+
+
+} 

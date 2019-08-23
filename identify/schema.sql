@@ -7,7 +7,7 @@ create table employees (
    id serial primary key not null,
    first_name text not null,
    last_name text not null,
-   email text not null,
+   email text UNIQUE not null,
    password text not null,
    user_role boolean,
    emp_status boolean,

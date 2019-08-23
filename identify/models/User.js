@@ -17,11 +17,7 @@ async function getAll(id) {
         const user = await db.one(`
             select * from company where id=$1    
         `, [id]);
-        // const userFavorites = await db.any(`
-        //     select * from favorites where user_id=$1
-        // `, [id]);
 
-        // user.favorites = userFavorites;
         return user;
 
     } catch (error) {
@@ -37,21 +33,17 @@ async function getAll(id) {
 
 async function createUser({ first_name, last_name, email, company_name, password }) {
     try {
+
         const hash = bcrypt.hashSync(password, 10);
-        const checkUser = await db.any(`
-    
-            select * from company where company_name=$1
-    
-        `, [company_name]);
-        
+
         const company = await db.one(`
-    
+        
             insert into company
                 (company_name)
             values ($1)
-    
+
             returning id
-    
+
         `, [company_name]);
 
         const refId = await db.one(`
@@ -59,9 +51,6 @@ async function createUser({ first_name, last_name, email, company_name, password
             select id from company where company_name=$1
 
         `, [company_name]);
-        console.log('%%%%%%%%%');
-        console.log(refId);
-        console.log(refId.id);
 
         const employeesForCompany = await db.one(`
             insert into employees
@@ -74,16 +63,38 @@ async function createUser({ first_name, last_name, email, company_name, password
         
         company.employees = employeesForCompany;
 
+        return company;
+
+    } catch (error) {
+// Will almost certainly not ever happen
+        return {
+            msg: "error"
+        }
+
+    }
+}
+
+async function checkUser({ first_name, last_name, email, company_name, password }) {
+    try {
+
+        const checkUser = await db.any(`
+    
+            select * from company, employees where company_name=$1 OR email=$2
+    
+        `, [company_name, email]);
+
         if(checkUser.length > 0) {
-            return 'Error: User Exists';
+            return {
+                msg: "error"
+            }
         } else {
-            return company;
+            return createUser({ first_name, last_name, email, company_name, password });
         }
 
     } catch (error) {
-        console.log(error);
+// Will almost certainly not ever happen
         return {
-            msg: "Unable to create user."
+            msg: "error"
         }
 
     }
@@ -114,7 +125,6 @@ async function checkQuery(req) {
 
         if (correctPass) {
             return {
-                email: query.email,
                 id: query.id,
                 ref_id: refId.company_id
             };
@@ -138,7 +148,7 @@ module.exports = {
 
     getUsers,
     getAll,
-    createUser,
+    checkUser,
     checkQuery
 
 }

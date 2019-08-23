@@ -33,17 +33,18 @@
     justify-content: flex-start;
 }
 
-a {
+a, .toggles {
     text-decoration: none;
     color: navy;
     padding: 1vh;
     transition: 1s;
 }
 
-a:hover {
+a:hover, .toggles:hover {
     text-decoration: none;
-    color: red;
+    color: skyblue;
     transition: 1s;
+    cursor: pointer;
 }
 
 .small-container {
@@ -65,7 +66,7 @@ a:hover {
 .database {
     display: flex;
     width: 60vw;
-    height: 80vh;
+    height: 75vh;
     background-color: whitesmoke;
     flex-flow: row nowrap;
     justify-content: stretch;
@@ -89,4 +90,27 @@ hr {
     margin: 0;
     border: 1px solid navy;
     display: block;
+}
+
+form {
+    display: flex;
+    justify-content: flex-start;
+    position: absolute;
+    width: 70vw;
+    top: 1vh;
+    right: 0;
+}
+
+.input_fields {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 65vw;
+}
+
+.button-div {
+    width: 5vw;
+}
+
+.hidden {
+    display: none;
 }

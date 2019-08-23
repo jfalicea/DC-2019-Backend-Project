@@ -31,6 +31,31 @@ async function getAll(id) {
     }
 }
 
+async function adminCreate({ first_name, last_name, email, user_role, emp_status }, user_id) {
+    // think about adding checkUser functionality
+
+    const refId = user_id;
+
+    try {
+
+        const newEmployee = await db.one(`
+
+            insert into employees
+                (first_name, last_name, email, user_role, emp_status, company_id)
+            values ($1, $2, $3, $4, $5, $6)
+
+            returning id
+
+        `, [first_name, last_name, email, user_role, emp_status, refId]);
+        console.log('<<<<<<<<>>>>>>>')
+        console.log(newEmployee);
+        return newEmployee;
+
+    } catch (error) {
+        console.log('hey');
+    }
+}
+
 async function createUser({ first_name, last_name, email, company_name, password }) {
     try {
 
@@ -148,6 +173,7 @@ module.exports = {
 
     getUsers,
     getAll,
+    adminCreate,
     checkUser,
     checkQuery
 

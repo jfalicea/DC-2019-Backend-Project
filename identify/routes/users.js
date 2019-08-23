@@ -60,6 +60,21 @@ router.get('/database', async (req, res) => {
   });
 });
 
+router.post('/database/update', [
+  sanitizeBody('first_name').escape(),
+  sanitizeBody('last_name').escape(),
+  sanitizeBody('email').escape(),
+  sanitizeBody('user_role').escape(),
+  sanitizeBody('emp_status').escape(),
+], async (req, res) => {
+  const addedEmployee = await User.adminCreate(req.body, req.session.user_id);
+    console.log('---===----');
+    console.log(addedEmployee);
+  res.render('database', {
+  });
+  
+});
+
 router.post('/loginProcess', [
   sanitizeBody('email').escape(),
   sanitizeBody('password').escape(),

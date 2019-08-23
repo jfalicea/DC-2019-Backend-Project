@@ -10,6 +10,6 @@ const db = pgp({
     database: process.env.DB_NAME
 });
 
-console.log('just checking');
+console.log('RAN DB FILE.');
 
 module.exports = db;

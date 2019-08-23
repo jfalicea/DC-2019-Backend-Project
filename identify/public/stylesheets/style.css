@@ -1,3 +1,4 @@
+/* TRACY */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -7,11 +8,12 @@
 
 body {
   font-size: .8rem;
+  color: #031F4B;
 }
 
-/* a {
+a {
   color: ;
-} */
+}
 
 a:hover {
   text-decoration: none;
@@ -27,16 +29,20 @@ a:hover {
   background: url('../img/room-l9QPabiKKhw-unsplash.jpg') center no-repeat;
   background-size: cover; 
   height: 100vh;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .center {
-  width: 80%;
+  width: 90%;
   margin: auto;
 }
 
 .logo {
   text-align: center;
   color: #031F4B;
+  margin-top: 50px;
 }
 
 
@@ -44,6 +50,13 @@ a:hover {
   font-size: 3rem;
 }
 
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 80px;
+}
 
 .forgot {
   color: #031F4B;
@@ -60,12 +73,15 @@ a:hover {
 }
 
 .form-control {
-  border-radius: 30px;
+  border-radius: 2rem;
+  box-shadow: 0px 0px 5px grey;
+  padding: 1rem;
+  margin: 1rem;
 }
 
 
 .button:hover {
-  background-color: #C8D3D5;
+  background-color: 
   color: #031F4B;
   transition: 1s;
 }
@@ -131,7 +147,6 @@ label {
   padding: 0 2rem;
   color: #C8D3D5;
 }
-
 .shake {
   animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
   transform: translate3d(0, 0, 0);
@@ -139,48 +154,42 @@ label {
   perspective: 1000px;
 }
 
-@keyframes shake {
-  10%, 90% {
-    transform: translate3d(-1px, 0, 0);
-  }
-
-  20%, 80% {
-    transform: translate3d(2px, 0, 0);
-  }
-
-  30%, 50%, 70% {
-    transform: translate3d(-4px, 0, 0);
-  }
-
-  40%, 60% {
-    transform: translate3d(4px, 0, 0);
-  }
-}
-/* @media screen and (min-width: 768px) {
-
-
-
-} */
-
-
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 768px) {
+  
   .main-container {
     display: flex;
     height: 100vh;
   }
-
+  
   .left {
     width: 60vw;
+    /* display: flex;
+    justify-content: space-between; */
+  }
+
+}
+
+
+@media screen and (min-width: 992px) {
+
+
+ 
+
+  .center {
     display: flex;
     justify-content: space-between;
+    margin: 0;
+
   }
 
   .right {
       width: 40vw;
   }
 
+
+
   .logo > h1 {
-    font-size: 8rem;
+    font-size: 6rem;
 }
 
 .registercontainer {
@@ -189,4 +198,4 @@ label {
 }
 
 
-}
+} 

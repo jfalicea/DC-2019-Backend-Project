@@ -1,9 +1,12 @@
 insert into company
+
     (company_name)
+
 VALUES
     ('Google'),
     ('Apple'),
     ('Microsoft');
+
 
 INSERT INTO employees
     (first_name, last_name, email, password, user_role, emp_status, company_id)
@@ -17,3 +20,11 @@ VALUES
     ('Jane', 'Doe-apple', 'janedoe@apple.com', 'pass123', False, True, 2),
     ('Steve', 'Doe-microsoft', 'stevedoe@microsoft.com', 'pass123', False, True, 3),
     ('Stephanie', 'Doe-microsoft', 'stephdoe@microsoft.com', 'pass123', False, True, 3);
+
+
+
+
+
+
+
+

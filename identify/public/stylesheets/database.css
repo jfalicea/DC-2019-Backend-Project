@@ -70,6 +70,7 @@ a:hover, .toggles:hover {
     background-color: whitesmoke;
     flex-flow: row nowrap;
     justify-content: stretch;
+    overflow: none;
 }
 .data-col {
     flex-grow: 1;

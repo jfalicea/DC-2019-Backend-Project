@@ -1,4 +1,5 @@
 create table company (
+
    id serial primary key not null,
    company_name text UNIQUE not null
 );

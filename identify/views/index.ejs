@@ -13,6 +13,7 @@
     <div class="login">
     <form action="/users/loginProcess" method="post">
 
+
       <label>Email</label>
       <input type="text" name="email" class="form-control">
 
@@ -21,7 +22,9 @@
 
       <div class="button-div">
       <input type="submit" class="button" value="LOGIN">
+
       <a href="/retrieve" class="forgot <%= passwordFail ? 'shake' : '' %>">FORGOT<br>PASSWORD?</a>
+
       </div>
 
     </form>
@@ -44,23 +47,45 @@
             <div class="name-field">
             <input type="text" name="first_name" class="form-control reg" placeholder="First Name">&nbsp;&nbsp;&nbsp;
             <input type="text" name="last_name" class="form-control reg" placeholder="Last Name">
+
             </div>
-            
-            <label>EMAIL</label>
-            <input type="email" name="email" class="form-control reg" placeholder="johndoe@example.com">
-
-            <label>COMPANY NAME</label>
-            <input type="text" name="company_name" class="form-control reg" placeholder="Company">
-            
-            <label>PASSWORD</label>
-            <input type="password" name="password" class="form-control reg" placeholder="password">
-            <label>RE-ENTER</label>
-
-            <input type="password" name="password2" class="form-control reg" placeholder="password">
-            <input type="submit" class="button" value="SIGN ME UP">
+      
           </form>
-        </div>
-        
+          </div> <!-- end of login div-->
+      
+          <!--</div>  end of center-->
+        </div> <!-- end of left container-->
+      
+        <div class="right">
+      
+            <!-- <div class="logo-right">
+            <h2>Insta.id</h2>
+            </div> -->
+      
+            <div class="registercontainer">
+              <h1>REGISTER</h1>
+                <form action="/users/registerProcess" method="post" class="register">
+                  <label>NAME</label>
+      
+                  <div class="name-field">
+                  <input type="text" name="first_name" class="form-control reg" placeholder="First Name">&nbsp;&nbsp;&nbsp;
+                  <input type="text" name="last_name" class="form-control reg" placeholder="Last Name">
+                  </div>
+                  
+                  <label>EMAIL</label>
+                  <input type="email" name="email" class="form-control reg" placeholder="johndoe@example.com">
+      
+                  <label>COMPANY NAME</label>
+                  <input type="text" name="company_name" class="form-control reg" placeholder="Company name">
+                  
+                  <label>PASSWORD</label>
+                  <input type="password" name="password" class="form-control reg" placeholder="password">
+                  <label>RE-ENTER</label>
+      
+                  <input type="password" name="password2" class="form-control reg" placeholder="password">
+                  <input type="submit" class="button" value="SIGN ME UP">
+                </form>
+              </div>     
     </div>
   </div> <!-- end of right container-->
 
@@ -77,3 +102,4 @@
 
 </body>
 </html>
+

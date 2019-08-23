@@ -19,7 +19,7 @@ router.all('*', (req, res, next) => {
   if((req.session.loggedin === true) || (req.url === '/login') || (req.url === '/loginProcess') || (req.url === '/registerProcess')){
     next();
   }else{
-    res.redirect('../');
+    res.redirect('/');
   }
 });
 
@@ -68,11 +68,7 @@ router.post('/database/update', [
   sanitizeBody('emp_status').escape(),
 ], async (req, res) => {
   const addedEmployee = await User.adminCreate(req.body, req.session.user_id);
-    console.log('---===----');
-    console.log(addedEmployee);
-  res.render('database', {
-  });
-  
+  console.log(JSON.stringify(addedEmployee));
 });
 
 router.post('/loginProcess', [
@@ -85,7 +81,7 @@ router.post('/loginProcess', [
     req.session.user_id = checkUserQuery.ref_id;
     res.redirect(`/users/database`);
   } else {
-    res.redirect('../../?msg=badPass');
+    res.redirect('/?msg=badPass');
   }
 
 });

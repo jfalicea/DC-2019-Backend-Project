@@ -16,7 +16,7 @@
             <input type="text" name="emp_status" class="form-control" placeholder="Status">
         
             <div class="button-div">
-                <input type="submit" class="btn btn-secondary" value="SUBMIT">
+                <input type="submit" class="btn btn-secondary" id="newfirst" value="SUBMIT">
             </div>
 
         </div>
@@ -71,13 +71,13 @@
 <script>
 $(document).ready(function () {
 
-    const $toggles = $("form");
-    console.log($toggles.class);
+    const $toggles = $('form');
+
     const controlClick = (e) => {
 
         const el = e.target;
 
-        if (el.id === "add") {            
+        if (el.id === 'add') {            
             $toggles.toggleClass('hidden');
         }
 

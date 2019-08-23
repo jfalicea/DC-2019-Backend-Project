@@ -1,3 +1,5 @@
+
+
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -7,6 +9,7 @@
 
 body {
   font-size: .8rem;
+  color: #031F4B;
 }
 
 a {
@@ -27,16 +30,20 @@ a:hover {
   background: url('../img/room-l9QPabiKKhw-unsplash.jpg') center no-repeat;
   background-size: cover; 
   height: 100vh;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .center {
-  width: 80%;
+  width: 90%;
   margin: auto;
 }
 
 .logo {
   text-align: center;
   color: #031F4B;
+  margin-top: 50px;
 }
 
 
@@ -44,6 +51,13 @@ a:hover {
   font-size: 3rem;
 }
 
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 80px;
+}
 
 .forgot {
   color: #031F4B;
@@ -60,12 +74,15 @@ a:hover {
 }
 
 .form-control {
-  border-radius: 30px;
+  border-radius: 2rem;
+  box-shadow: 0px 0px 5px grey;
+  padding: 1rem;
+  margin: 1rem;
 }
 
 
 .button:hover {
-  background-color: #C8D3D5;
+  background-color: 
   color: #031F4B;
   transition: 1s;
 }
@@ -134,30 +151,41 @@ label {
 
 
 @media screen and (min-width: 768px) {
-
-
+  
+  .main-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .left {
+    width: 60vw;
+    /* display: flex;
+    justify-content: space-between; */
+  }
 
 }
 
 
 @media screen and (min-width: 992px) {
-  .main-container {
-    display: flex;
-    height: 100vh;
-  }
 
-  .left {
-    width: 60vw;
+
+ 
+
+  .center {
     display: flex;
     justify-content: space-between;
+    margin: 0;
+
   }
 
   .right {
       width: 40vw;
   }
 
+
+
   .logo > h1 {
-    font-size: 8rem;
+    font-size: 6rem;
 }
 
 .registercontainer {

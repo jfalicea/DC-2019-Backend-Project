@@ -46,9 +46,16 @@ a:hover {
 
 
 .forgot {
-  color: #031F4B;
+  color: white;
+  font-weight: bolder;
+  transition: 1s;
+  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-width: 0.5px;
 }
-
+.forgot:hover {
+  color: red;
+  transition: 1s;
+}
 
 .button {
   background-color: #031F4B;
@@ -57,6 +64,8 @@ a:hover {
   margin: 5px;
   border: none;
   border-radius: 30px;
+  font-weight: bolder;
+  transition: 1s;
 }
 
 .form-control {
@@ -65,7 +74,7 @@ a:hover {
 
 
 .button:hover {
-  background-color: #C8D3D5;
+  background-color: white;
   color: #031F4B;
   transition: 1s;
 }
@@ -132,36 +141,61 @@ label {
   color: #C8D3D5;
 }
 
-.shake {
-  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-  perspective: 1000px;
+/* .shake {
+  animation: blinking 4s ease-in-out;
 }
 
-@keyframes shake {
-  10%, 90% {
-    transform: translate3d(-1px, 0, 0);
+@keyframes blinking {
+  0%, 37.5%, 75%  {
+      color: white;
   }
-
-  20%, 80% {
-    transform: translate3d(2px, 0, 0);
+  12.5%, 50%, 87.5% {
+      color: red;
   }
-
-  30%, 50%, 70% {
-    transform: translate3d(-4px, 0, 0);
+  25%, 62.5%, 100% {
+      color: white;
   }
-
-  40%, 60% {
-    transform: translate3d(4px, 0, 0);
-  }
-}
+} */
 /* @media screen and (min-width: 768px) {
 
 
 
 } */
+.body-shake {
+  animation: shake 1.3s ease-in-out;
+}
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1.5px, 0, 0);
+  }
 
+  20%, 80% {
+    transform: translate3d(3px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-5px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(5px, 0, 0);
+  }
+}
+.red {
+  animation-delay: 1s !important;
+  animation: blinking 3s ease;
+}
+@keyframes blinking {
+  0%, 37.5%, 75%  {
+      color: white;
+  }
+  12.5%, 50%, 87.5% {
+      color: red;
+  }
+  25%, 62.5%, 100% {
+      color: white;
+  }
+}
 
 @media screen and (min-width: 992px) {
   .main-container {

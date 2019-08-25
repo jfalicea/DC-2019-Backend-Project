@@ -9,7 +9,7 @@ create table employees (
    last_name text not null,
    email text UNIQUE not null,
    password text,
-   user_role boolean,
-   emp_status boolean,
+   user_role boolean not null,
+   emp_status boolean not null,
    company_id integer references company(id)
 );

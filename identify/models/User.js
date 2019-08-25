@@ -8,7 +8,7 @@ async function getUsers(id) {
         select * from employees where company_id=$1
     `, [id]);
 
-    return users;
+    return users
 }
 
 async function getAll(id) {
@@ -41,14 +41,20 @@ async function adminCreate({ first_name, last_name, email, user_role, emp_status
         const newEmployee = await db.one(`
 
             insert into employees
-                (first_name, last_name, email, company_id)
-            values ($1, $2, $3, $4)
+                (first_name, last_name, email, user_role, emp_status, company_id)
+            values ($1, $2, $3, $4, $5, $6)
 
             returning id, first_name, last_name, email, user_role, emp_status
 
-        `, [first_name, last_name, email, user_id]);
+        `, [first_name, last_name, email, user_role, emp_status, user_id]);
 
-        return newEmployee;
+        const queryAll = await db.any(`
+
+            select * from employees where company_id=$1
+
+        `, [user_id]);
+
+        return queryAll;
 
     } catch (error) {
         console.log(error);
@@ -79,12 +85,12 @@ async function createUser({ first_name, last_name, email, company_name, password
 
         const employeesForCompany = await db.one(`
             insert into employees
-                (first_name, last_name, email, password, company_id)
-            values ($1, $2, $3, $4, $5)
+                (first_name, last_name, email, password, user_role, emp_status, company_id)
+            values ($1, $2, $3, $4, $5, $6, $7)
 
-            returning id
+            returning id, email
 
-        `, [first_name, last_name, email, hash, refId.id]);
+        `, [first_name, last_name, email, hash, 'true', 'true', refId.id]);
         
         company.employees = employeesForCompany;
 
@@ -93,7 +99,7 @@ async function createUser({ first_name, last_name, email, company_name, password
     } catch (error) {
 // Will almost certainly not ever happen
         return {
-            msg: "error"
+            msg: "different error"
         }
 
     }
@@ -151,7 +157,8 @@ async function checkQuery(req) {
         if (correctPass) {
             return {
                 id: query.id,
-                ref_id: refId.company_id
+                ref_id: refId.company_id,
+                user_email: email
             };
         } else {
             return {
@@ -169,12 +176,36 @@ async function checkQuery(req) {
     }
 }
 
+async function removeEmployee(email) {
+    console.log(email);
+    try {
+
+        const delEmployee = await db.one(`
+        
+            delete from employees where email=$1 
+
+        `, [email]);
+
+        return {
+            message: 'Success'
+        }
+
+    } catch (error) {
+
+        return {
+            message: 'Error'
+        }
+
+    }
+}
+
 module.exports = {
 
     getUsers,
     getAll,
     adminCreate,
     checkUser,
-    checkQuery
+    checkQuery,
+    removeEmployee
 
 }

@@ -1,8 +1,10 @@
 <% include dbhead %>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <body>
-    <div class="main-container">
+    <div class="main-container" id="<%= resume %>">
+        <a href="/users/logout" class="logout"><img src="https://img.icons8.com/android/30/000000/logout-rounded.png"></a>
     <% include navbar %>
-    <form class="hidden" action="/users/database/update" method="post">
+    <form class="hidden" id="input_form" action="/users/database/update" method="post">
         <div class="input_fields">
 
             <input type="text" name="first_name" class="form-control" placeholder="First Name">
@@ -11,9 +13,15 @@
 
             <input type="text" name="email" class="form-control" placeholder="Email">
 
-            <input type="text" name="user_role" class="form-control" placeholder="Role">
+            <select name="user_role" class="form-control">
+                <option value="false">Employee</option>
+                <option value="true">Admin</option>
+            </select>
 
-            <input type="text" name="emp_status" class="form-control" placeholder="Status">
+            <select name="emp_status" class="form-control">
+                <option value="true">Active</option>
+                <option value="false">Inactive</option>
+            </select>
         
             <div class="button-div">
                 <input type="submit" class="btn btn-secondary" id="newfirst" value="SUBMIT">
@@ -22,49 +30,61 @@
         </div>
     </form>
         <div class="small-container">
-            <div class="label">
-            employees
+            <div class="label" id="<%= user_email %>">
+                employees
             </div>
             <br>
             <div class="database">
-                <div class="data-col">
-                    <div class="table-headers">
-                        id<hr>
-                    </div>
-                <%= user_id %>
-                </div>
-                <div class="data-col">
-                    <div class="table-headers">
-                        first name<hr>
-                    </div>
-                <%= first_name %>
-                </div>
-                <div class="data-col">
-                    <div class="table-headers">
-                        last name<hr>
-                    </div>
-                <%= last_name %>
-                </div>
-                <div class="data-col">
-                    <div class="table-headers">
-                        email<hr>
-                    </div>
-                <%= email %>
-                </div>
-                <div class="data-col">
-                    <div class="table-headers">
-                        role<hr>
-                    </div>
-                    Admin
-                <%= role %>
-                </div>
-                <div class="data-col">
-                    <div class="table-headers">
-                        status<hr>
-                    </div>
-                    active
-                <%= status %>
-                </div>
+                    <div class="row">
+                        <div class="data-col">
+                            <div class="table-headers">
+                                First Name<hr>
+                            </div>
+                        </div>
+                        <div class="data-col">
+                            <div class="table-headers">
+                                Last Name<hr>
+                            </div>
+                        </div>
+                        <div class="data-col">
+                            <div class="table-headers">
+                                Email<hr>
+                            </div>
+                        </div>
+                        <div class="data-col">
+                            <div class="table-headers">
+                                User Role<hr>
+                            </div>
+                        </div>
+                        <div class="data-col">
+                            <div class="table-headers">
+                                Status<hr>
+                            </div>
+                        </div>
+                    </div>   
+                    <!-- <div class="table-headers"> -->
+                <% userData.forEach(({ first_name, last_name, email, user_role, emp_status }) => { %>
+                    <div class="row">
+                        <div class="data-col">
+                            <a href="/users/remove/?email=<%= email %>" class="remove-data hidden" id="<%= email %>">
+                                <img src="https://img.icons8.com/flat_round/20/000000/delete-sign.png">
+                            </a>
+                            <input class="data-change" placeholder="<%= first_name %>" readonly>
+                        </div>
+                        <div class="data-col" contenteditable="true">
+                            <input class="data-change" placeholder="<%= last_name %>" readonly>
+                        </div>
+                        <div class="data-col">
+                            <input class="data-change" placeholder="<%= email %>" readonly>
+                        </div>
+                        <div class="data-col">
+                            <input class="data-change roles" id="<%= user_role %>" readonly>
+                        </div>
+                        <div class="data-col">
+                            <input class="data-change status" id="<%= emp_status %>" readonly>
+                        </div>
+                    </div>               
+                <% }) %>
             </div>
         </div>
     </div>
@@ -72,6 +92,49 @@
 $(document).ready(function () {
 
     const $toggles = $('form');
+    const $data = $('.remove-data');
+    const $page = $('.main-container');
+    const $self = $('.label');
+
+    const roles = document.querySelectorAll('.roles');
+    const status = document.querySelectorAll('.status');
+    const values = document.querySelectorAll('.remove-data');
+    const edits = document.querySelectorAll('.data-change');
+
+    console.log($self.attr('id'));
+
+    values.forEach((value) => {
+   
+        if (value.id === $self.attr('id')) {
+            value.style.display = 'none'
+        }
+
+    });
+
+    roles.forEach((role) => {
+
+        if (role.id === 'true') {
+            console.log('hey');
+            role.setAttribute('placeholder', 'Admin');
+        } else if (role.id === 'false') {
+            role.setAttribute('placeholder', 'Employee');
+        }
+
+    });
+
+    status.forEach((status) => {
+
+        if (status.id === 'true') {
+            status.setAttribute('placeholder', 'Active')
+        } else if (status.id === 'false') {
+            status.setAttribute('placeholder', 'Inactive')
+        }
+
+    })
+
+    if ($page.attr('id') === 'true') {
+        $data.removeClass('hidden');
+    }
 
     const controlClick = (e) => {
 
@@ -79,9 +142,29 @@ $(document).ready(function () {
 
         if (el.id === 'add') {            
             $toggles.toggleClass('hidden');
+            $('#add').toggleClass('red');
+        } else if (el.id === 'remove') {
+            $data.toggleClass('hidden');
+            if ($data.hasClass('hidden')) {
+                $('#remove').removeClass('red');
+            } else {
+                $('#remove').addClass('red');
+            }
+        } else if (el.id === 'update') {
+            $('#update').toggleClass('red');
+            if($('#update').hasClass('red') === true) {
+                $('.data-change').removeAttr('readonly');
+                $('.data-change').css('cursor','text')
+            } else {
+                $('.data-change').attr('readonly', 'true');
+                $('.data-change').css('cursor','default');
+            }
+        } else if (el.id === 'settings') {
+            $('#settings').toggleClass('red');
         }
 
     }
+
 
     window.addEventListener('click', controlClick);
 

@@ -1,5 +1,5 @@
 <% include head %>
-<body>
+<body class="<%= passwordFail ? 'body-shake' : '' %>"</body>>
 
 <div class="main-container">
   <div class="left">
@@ -21,7 +21,7 @@
 
       <div class="button-div">
       <input type="submit" class="button" value="LOGIN">
-      <a href="/retrieve" class="forgot <%= passwordFail ? 'shake' : '' %>">FORGOT<br>PASSWORD?</a>
+      <a href="/retrieve" class="forgot <%= passwordFail ? 'red' : '' %>">FORGOT<br>PASSWORD?</a>
       </div>
 
     </form>

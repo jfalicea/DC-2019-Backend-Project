@@ -21,7 +21,7 @@ body {
         title: 'Success!',
         text: 'New User Created',
         type: 'success',
-        html:'<a class="btn btn-primary" href="./database">Continue</a>',
+        html:`<a class="btn btn-primary" href="./database/?user_email=<%= user_email %>">Continue</a>`,
         showConfirmButton: false
         });
     </script>

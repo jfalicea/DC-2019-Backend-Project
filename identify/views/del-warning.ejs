@@ -18,17 +18,18 @@ body {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8.16.3/dist/sweetalert2.css">
     <script> 
     Swal.fire({
-        title: 'Error!',
-        text: 'Company exists',
+        title: 'Delete user <%= email %>?',
+        text: 'Confirm delete',
         type: 'warning',
         html:`
-        <div>The account belonging to either the provided<br> 
-            company name or email address already exists.<br><br>
-            Please try again.</div> <br>
-        <a class="btn btn-primary" href="/">Continue</a>
+        <div>Once completed, this action cannot be undone.</div> <br>
+        <a class="btn btn-primary" href="/users/database/?resume=true">Continue</a>
+        <a class="btn btn-primary" href="/users/database/?">Cancel</a>
         `,
         showConfirmButton: false
         });
     </script>
 </body>
 </html>
+
+<!-- find routes to links in users,js -->

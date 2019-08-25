@@ -34,29 +34,32 @@ router.post('/registerProcess', [
   sanitizeBody('company_name').escape(),
   sanitizeBody('password').escape(),
 ], async (req, res) => {
- const newUserInfo = await User.checkUser(req.body);
+  const newUserInfo = await User.checkUser(req.body);
   req.session.loggedin = true;
   req.session.user_id = newUserInfo.id;
+  req.session.user_email = newUserInfo.employees.email;
   if(newUserInfo.msg === 'error'){
   res.render('reg-failure');
   } else {
-  res.render('reg-success');
+  res.render('reg-success', {
+    user_email: req.session.user_email
+  });
   }
 });
 
 router.get('/database', async (req, res) => {
   const sessionId = req.session.user_id;
   const userData = await User.getUsers(sessionId);
-  const parsedData = JSON.stringify(userData);
+  const param = req.query.resume;
+  const email = req.query.email;
+  const user_email = req.session.user_email;
+
   res.render('database', {
     title: 'Database',
-    user_id: userData[0].id,
-    first_name: userData[0].first_name,
-    last_name: userData[0].last_name,
-    email: userData[0].email,
-    role: userData[0].role,
-    status: userData[0].status,
-    data: parsedData
+    userData: userData,
+    resume: param,
+    email: email,
+    user_email: user_email
   });
 });
 
@@ -68,7 +71,12 @@ router.post('/database/update', [
   sanitizeBody('emp_status').escape(),
 ], async (req, res) => {
   const addedEmployee = await User.adminCreate(req.body, req.session.user_id);
-  console.log(JSON.stringify(addedEmployee));
+
+  res.render('database', {
+    userData: addedEmployee,
+    resume: 'false',
+    user_email: req.session.user_email,
+  });
 });
 
 router.post('/loginProcess', [
@@ -79,11 +87,24 @@ router.post('/loginProcess', [
   if (checkUserQuery.id > 0) {
     req.session.loggedin = true;
     req.session.user_id = checkUserQuery.ref_id;
-    res.redirect(`/users/database`);
+    req.session.user_email = checkUserQuery.user_email;
+    res.redirect(`/users/database/?resume=false&user_email=${req.body.email}`);
   } else {
     res.redirect('/?msg=badPass');
   }
 
+});
+
+router.get('/remove', async (req, res) => {
+  const email = req.query.email;
+  const remove = await User.removeEmployee(email);
+  res.redirect(`/users/remove/warning/?email=${email}`);
+});
+
+router.get('/remove/warning', function(req, res) {
+  res.render('del-warning', {
+    email: req.query.email
+  });
 });
 
 router.get('/logout', function (req, res) {

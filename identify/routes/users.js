@@ -72,11 +72,7 @@ router.post('/database/update', [
 ], async (req, res) => {
   const addedEmployee = await User.adminCreate(req.body, req.session.user_id);
 
-  res.render('database', {
-    userData: addedEmployee,
-    resume: 'false',
-    user_email: req.session.user_email,
-  });
+  res.redirect('/users/database/?resume=true1');
 });
 
 router.post('/loginProcess', [
@@ -97,7 +93,6 @@ router.post('/loginProcess', [
 
 router.get('/remove', async (req, res) => {
   const email = req.query.email;
-  const remove = await User.removeEmployee(email);
   res.redirect(`/users/remove/warning/?email=${email}`);
 });
 
@@ -106,6 +101,12 @@ router.get('/remove/warning', function(req, res) {
     email: req.query.email
   });
 });
+
+router.get('/remove/confirm', async function(req, res) {
+  const email = req.query.email;
+  const remove = await User.removeEmployee(email);
+  res.redirect('/users/database/?resume=true');
+})
 
 router.get('/logout', function (req, res) {
 

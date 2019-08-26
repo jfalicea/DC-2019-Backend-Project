@@ -31,6 +31,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    margin-top: 4vh;
 }
 
 .toggles {
@@ -39,12 +40,25 @@
     padding: 1vh;
     transition: 1s;
 }
-
 .toggles:hover {
     text-decoration: none;
     transition: 1.5s;
     cursor: pointer;
 }
+.toggles:active {
+    transform: translate(20px, 20px);
+}
+
+/* #add {
+    animation-play-state: paused;
+    animation-iteration-count: 1;
+    animation: click 4s linear;
+}
+@keyframes click {
+    50% { 
+        transform: translate(3px, 3px);
+    }
+} */
 
 .small-container {
     display: flex;
@@ -63,14 +77,21 @@
     justify-content: flex-end;
 }
 .database {
-    display: flex;
-    width: 60vw;
-    height: 76vh;
+    height: 66vh;
+    width: 63vw;
     background-color: whitesmoke;
     flex-direction: column;
     justify-content: flex-start;
     padding-left: 1vw;
     padding-right: 1vw;
+    overflow: scroll;
+    border: 1px solid whitesmoke;
+
+}
+.first-row {
+    display: flex;
+    width: 63vw;
+    background-color: whitesmoke;
 }
 .row {
     display: flex;
@@ -112,19 +133,24 @@ form {
     flex-flow: row nowrap;
     width: 65vw;
 }
+#more-control {
+    width: 800px;
+    margin: 1px;
+}
+#newfirst {
+    margin-left: 10px;
+}
 
 .button-div {
     width: 5vw;
 }
 
 .remove-data {
-    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: -20px;
-    margin-top: 3px;
-
+    padding: 1px;
+    margin-left: 1px;
 }
 .remove-data:hover {
     animation: wobble 1s infinite;
@@ -132,6 +158,12 @@ form {
 }
 #admin {
     display: none;
+}
+#icon-col {
+    display: flex;
+    width: 8vw;
+    justify-content: center;
+    align-items: center;
 }
 
 @keyframes wobble { 
@@ -146,7 +178,7 @@ form {
     position: absolute;
     right: 0;
     padding: 1vh;
-    margin-top: 0.4vh;
+    margin-top: 0.6vh;
     z-index: 10;
 }
 .logout:hover {
@@ -195,6 +227,10 @@ form {
 }
 #settings-icon {
     margin-left: -1.5vh;
+}
+
+input {
+    overflow: scroll;
 }
 
 .hidden {

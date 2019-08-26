@@ -23,8 +23,12 @@ body {
         type: 'warning',
         html:`
         <div>Once completed, this action cannot be undone.</div> <br>
-        <a class="btn btn-primary" href="/users/database/?resume=true">Continue</a>
-        <a class="btn btn-primary" href="/users/database/?">Cancel</a>
+        <a class="btn btn-primary" href="/users/remove/confirm/?email=<%= email %>">Confirm</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;
+        <a class="btn btn-danger" href="/users/database/?resume=true">Cancel</a>
         `,
         showConfirmButton: false
         });

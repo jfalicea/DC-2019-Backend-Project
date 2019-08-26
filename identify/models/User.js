@@ -57,8 +57,9 @@ async function adminCreate({ first_name, last_name, email, user_role, emp_status
         return queryAll;
 
     } catch (error) {
-        console.log(error);
-        console.log('hey');
+        return {
+            msg: 'another error'
+        }
     }
 }
 
@@ -148,11 +149,7 @@ async function checkQuery(req) {
 
        `, [email]);
 
-       console.log('lskdjflskdjflksd------klsdflkdsjdslkj');
-       console.log(refId);
-
         const correctPass = bcrypt.compareSync(password, query.password);
-        console.log(correctPass);
 
         if (correctPass) {
             return {
@@ -168,7 +165,6 @@ async function checkQuery(req) {
 
     } catch (error) {
 
-        console.log('ERROR');
         return {
             message: 'Error'
         }

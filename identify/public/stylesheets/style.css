@@ -49,8 +49,6 @@ a:hover {
   color: white;
   font-weight: bolder;
   transition: 1s;
-  -webkit-text-stroke-color: black;
-  -webkit-text-stroke-width: 0.5px;
 }
 .forgot:hover {
   color: red;

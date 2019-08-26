@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 const { sanitizeBody } = require('express-validator');
 const User = require('../models/User');
-const Swal = require('sweetalert2');
 const expressSession = require('express-session');
 
 const sessionOptions = {
@@ -15,13 +14,13 @@ const sessionOptions = {
 
 router.use(expressSession(sessionOptions));
 
-router.all('*', (req, res, next) => {
-  if((req.session.loggedin === true) || (req.url === '/login') || (req.url === '/loginProcess') || (req.url === '/registerProcess')){
-    next();
-  }else{
-    res.redirect('/');
-  }
-});
+// router.all('*', (req, res, next) => {
+//   if((req.session.loggedin === true) || (req.url === '/login') || (req.url === '/loginProcess') || (req.url === '/registerProcess')){
+//     next();
+//   }else{
+//     res.redirect('/');
+//   }
+// });
 
 router.get('/', function(req, res) {
   res.send('hello');
@@ -113,6 +112,26 @@ router.get('/logout', function (req, res) {
   req.session.destroy();
   res.redirect('/');
 
+});
+
+router.post('/employee', async function (req, res) {
+  const email = req.body.email;
+  let employeeData = await User.checkEmployee(email);
+
+  const string = `Name ${employeeData.user_name} Email ${employeeData.user_email} Company Name`
+  const code = await User.createQRcode(string);
+  const code2 = code.replace('public/','/')
+  console.log(code2)
+
+  res.render('appindex', {
+    title: 'QR Code', 
+    qrPic: "qr code goes here",
+    user_name: employeeData.user_name,
+    user_email: employeeData.user_email,
+    emp_status: employeeData,
+    company_name: employeeData.company_name,
+    URL: code2
+  });
 });
 
 module.exports = router;

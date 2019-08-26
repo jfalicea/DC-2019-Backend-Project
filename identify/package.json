@@ -8,6 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "base64-img": "^1.0.4",
+    "base64-img-promise": "^1.0.5",
     "bcrypt": "^3.0.6",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -19,7 +21,9 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "pg-promise": "^9.0.3",
+    "qrcode": "^1.4.1",
     "request": "^2.88.0",
-    "sweetalert2": "^8.16.2"
+    "sweetalert2": "^8.16.2",
+    "uuid": "^3.3.3"
   }
 }

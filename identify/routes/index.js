@@ -19,8 +19,13 @@ router.post('/retrieve', [
   res.render('forgot-success');
 });
 
-router.get('/app', function (req, res) {
-  res.render('appindex');
+router.get('/app', async function (req, res) {
+  res.render('appindex', {
+    user_name: 'Eugene',
+    user_email: 'ekim1707@gmail.com',
+    company_name: 'Unknown',
+    URL: ''
+  });
 });
 
 module.exports = router;

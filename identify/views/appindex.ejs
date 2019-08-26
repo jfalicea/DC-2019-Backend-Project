@@ -1,6 +1,26 @@
 <% include apphead %>
+<%= user_name %>
+<%= user_email %>
+<%= company_name %>
 <body>
     <div class="container">
+    <img src="<%= URL %>">
+    <div class="login">
+    <form action="/users/employee" method="post">
+
+        <label>Email</label>
+        <input type="text" name="email" class="form-control" value="ekim1707@gmail.com">
+
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" value="yes">
+
+        <div class="button-div">
+        <input type="submit" class="button" value="LOGIN">
+        <a href="/app" class="forgot">FORGOT<br>PASSWORD?</a>
+        </div>
+
+    </form>
+    </div>
     <div class="logo">
         Insta.id
     </div>

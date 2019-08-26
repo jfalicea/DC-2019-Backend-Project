@@ -1,7 +1,9 @@
 const db = require('../db');
 const bcrypt = require('bcrypt');
 const Swal = require('sweetalert2');
-
+const QRCode = require('qrcode');
+const base64Img = require('base64-img-promise');
+const uuid4 = require('uuid/v4');
 
 async function getUsers(id) {
     const users = await db.any(`
@@ -195,6 +197,69 @@ async function removeEmployee(email) {
     }
 }
 
+async function checkEmployee(email) {
+// const password = req.body.password;
+    try{
+
+        const query = await db.one(`
+
+            SELECT * FROM employees WHERE email=$1
+
+        `, [email]);
+
+        const refId = query.company_id;
+
+        const query2 = await db.one(`
+        
+            select company_name from company where id=$1
+
+        `, [refId]);
+
+        if (query.emp_status === true) {
+            return {
+                id: query.id,
+                user_name: `${query.first_name} ${query.last_name}`,
+                user_email: query.email,
+                emp_status: 'Active',
+                company_name: query2.company_name
+            }
+        } else {
+            return {
+                id: query.id,
+                user_email: query.email,
+                emp_status: 'NOT employed'
+            }
+        }
+
+
+    //    const correctPass = bcrypt.compareSync(password, query.password);
+
+    //    if (correctPass) {
+    //        return {
+    //            id: query.id,
+    //            ref_id: refId.company_id,
+    //            user_email: email
+    //        };
+    //    } else {
+    //        return {
+    //            message: 'Sorry this user doesnt exist or the password was incorrect'
+    //        };
+    //    }
+
+    } catch (error) {
+
+        return {
+            message: 'Def error'
+        }
+
+    }
+}
+
+async function createQRcode (email) {
+    const QRbase64 = await QRCode.toDataURL(email)
+    return await base64Img.img(QRbase64, `public/QRCode`, uuid4())
+};
+
 module.exports = {
 
     getUsers,
@@ -202,6 +267,8 @@ module.exports = {
     adminCreate,
     checkUser,
     checkQuery,
-    removeEmployee
+    removeEmployee, 
+    checkEmployee,
+    createQRcode
 
 }

@@ -137,16 +137,16 @@ $(document).ready(function () {
     if ($page.attr('id') === 'true') {
         $data.removeClass('hidden');
         if ($data.hasClass('hidden')) {
-            $('#remove').removeClass('red');
+            $('#remove').removeClass('newred');
         } else {
-            $('#remove').addClass('red');
+            $('#remove').addClass('newred');
         }
     } else if ($page.attr('id') === 'true1') {
         $toggles.removeClass('hidden');
         if ($toggles.hasClass('hidden')) {
-            $('#add').removeClass('red');
+            $('#add').removeClass('newred');
         } else {
-            $('#add').addClass('red');
+            $('#add').addClass('newred');
         }
     };
 
@@ -156,17 +156,17 @@ $(document).ready(function () {
 
         if (el.id === 'add') {            
             $toggles.toggleClass('hidden');
-            $('#add').toggleClass('red');
+            $('#add').toggleClass('newred');
         } else if (el.id === 'remove') {
             $data.toggleClass('hidden');
             if ($data.hasClass('hidden')) {
-                $('#remove').removeClass('red');
+                $('#remove').removeClass('newred');
             } else {
-                $('#remove').addClass('red');
+                $('#remove').addClass('newred');
             }
         } else if (el.id === 'update') {
-            $('#update').toggleClass('red');
-            if($('#update').hasClass('red') === true) {
+            $('#update').toggleClass('newred');
+            if($('#update').hasClass('newred') === true) {
                 $('.data-change').removeAttr('readonly');
                 $('.data-change').css('cursor','text')
             } else {
@@ -174,7 +174,7 @@ $(document).ready(function () {
                 $('.data-change').css('cursor','default');
             }
         } else if (el.id === 'settings') {
-            $('#settings').toggleClass('red');
+            $('#settings').toggleClass('newred');
         }
 
     }

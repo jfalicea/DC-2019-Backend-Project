@@ -24,7 +24,7 @@ router.get('/app', async function (req, res) {
     user_name: 'Eugene',
     user_email: 'ekim1707@gmail.com',
     company_name: 'Unknown',
-    URL: ''
+    URL: '/img/logo.png'
   });
 });
 

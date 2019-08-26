@@ -14,13 +14,13 @@ const sessionOptions = {
 
 router.use(expressSession(sessionOptions));
 
-// router.all('*', (req, res, next) => {
-//   if((req.session.loggedin === true) || (req.url === '/login') || (req.url === '/loginProcess') || (req.url === '/registerProcess')){
-//     next();
-//   }else{
-//     res.redirect('/');
-//   }
-// });
+router.all('*', (req, res, next) => {
+  if((req.session.loggedin === true) || (req.url === '/employee') || (req.url === '/login') || (req.url === '/loginProcess') || (req.url === '/registerProcess')){
+    next();
+  }else{
+    res.redirect('/');
+  }
+});
 
 router.get('/', function(req, res) {
   res.send('hello');
@@ -34,12 +34,12 @@ router.post('/registerProcess', [
   sanitizeBody('password').escape(),
 ], async (req, res) => {
   const newUserInfo = await User.checkUser(req.body);
-  req.session.loggedin = true;
-  req.session.user_id = newUserInfo.id;
-  req.session.user_email = newUserInfo.employees.email;
   if(newUserInfo.msg === 'error'){
   res.render('reg-failure');
   } else {
+  req.session.loggedin = true;
+  req.session.user_id = newUserInfo.id;
+  req.session.user_email = newUserInfo.employees.email;
   res.render('reg-success', {
     user_email: req.session.user_email
   });
@@ -118,10 +118,9 @@ router.post('/employee', async function (req, res) {
   const email = req.body.email;
   let employeeData = await User.checkEmployee(email);
 
-  const string = `Name ${employeeData.user_name} Email ${employeeData.user_email} Company Name`
+  const string = `${email}`;
   const code = await User.createQRcode(string);
-  const code2 = code.replace('public/','/')
-  console.log(code2)
+  const code2 = code.replace('public/','/');
 
   res.render('appindex', {
     title: 'QR Code', 

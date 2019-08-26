@@ -1,164 +1,213 @@
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500,700&display=swap');
 
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
-  font-size: .8rem;
+    line-height: 1.4;
+    font-family: 'Raleway', sans-serif;
+    color:#fff;
+    background-color: #3acaf1;
+    padding: 10px;
+}
+.button-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* a {
-  color: ;
-} */
+a {
+    color: #fff;
+    font-size: 0.8rem;
+    text-align: center;
+}
 
 a:hover {
   text-decoration: none;
+  color: #fff;
+}
+
+li a {
+    text-decoration: none;
+    padding: 1rem
 }
 
 
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+}
+
+/*------------------------------------
+NAVIGATION
+------------------------------------*/
+.nav {
+    padding: 2rem 0;
+    width: 100%;
+    display: flex;
+}
+
+.navlinks {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    margin: auto;
+
+}
+
+/*------------------------------------
+MAIN CONTAINER
+------------------------------------*/
 .main-container {
-  width: 100vw;
+    margin: auto;
+    color: #fefdf9;
+    width: 90%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.left {
-  padding: 2rem;
-  background: url('../img/room-l9QPabiKKhw-unsplash.jpg') center no-repeat;
-  background-size: cover; 
-  height: 100vh;
+/*------------------------------------
+WELCOME
+------------------------------------*/
+.welcome {
+    padding: 0 1rem;
 }
 
-.center {
-  width: 80%;
-  margin: auto;
+.welcome > h1 {
+    font-size: 2rem;
 }
 
-.logo {
-  text-align: center;
-  color: #031F4B;
-}
-
-
-.logo > h1 {
-  font-size: 3rem;
+.welcome > h2 {
+    font-size: 1.3rem;
 }
 
 
-.forgot {
-  color: white;
-  font-weight: bolder;
-  transition: 1s;
-}
-.forgot:hover {
-  color: red;
-  transition: 1s;
+/*------------------------------------
+REGISTER SECTION
+------------------------------------*/
+#right {
+  width: 100%;
+    padding: 2rem 1.5rem;
+    background-color: #fff;
+    color: #3acaf1;
+
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 5rem;
 }
 
-.button {
-  background-color: #031F4B;
-  color: #C8D3D5;
-  padding: .5rem 1.5rem;
-  margin: 5px;
-  border: none;
-  border-radius: 30px;
-  font-weight: bolder;
-  transition: 1s;
+
+#register {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
 }
 
 .form-control {
-  border-radius: 30px;
+    border: none;
+    border-bottom: 2px solid #3acaf1;
+    font-size: 0.8rem;
+    border-radius: 0px;
 }
 
+
+
+.button {
+    background-color: #3acaf1;
+    border: 2px solid white;
+    color: #fff;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    border-radius: 6rem;
+    
+}
 
 .button:hover {
-  background-color: white;
-  color: #031F4B;
-  transition: 1s;
+    background-color: transparent; 
+    border: 2px solid #3acaf1;
+    color: #3acaf1; 
+    transition: 1s;
+}
+
+.button:hover{
+    background-color: #3acaf1;
+    border: 2px solid white;
+    color: #fff;
+    transition: 3s;
 }
 
 
-.button-div {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+/*------------------------------------
+LOGIN SECTION
+------------------------------------*/
+
+
+form#login {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+#login>input[type=text]{
+    height: 1vh;
+    border: none;
+    border-bottom: 2px solid white;
+    background: transparent;
+    width: 100%;
+    color: #fff;
 }
 
 
-.name-field{
-  display: flex;
+.log {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
 }
 
-.registercontainer {
-  width: 90%;
-  margin: auto;
-}
-
-.right {
-  padding: 2rem;
-  background-color: #C8D3D5;
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
-  align-items: center;
-}
-
-.logo-right {
-  margin-bottom: 50px;
+.btn {
+    background-color: transparent; 
+    margin: 0 1rem;
+    border-radius: 6rem;
+    padding: 0 1rem;
+    border: 2px solid white;
+    color: white;
+    margin: 5px;
+    padding: 1rem 2rem;
 }
 
 
 
-label {
-  padding-top: .6rem ;
+/*------------------------------------
+BOX
+------------------------------------*/
+.box {
+    width: 100%;
 }
 
-
-#footer {
-  background-color: #031F4B;
-  color: #C8D3D5;
-  height: 10vh;
-  width: 100vw;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.box > h1 {
+  font-size: 2rem;
 }
 
-
-.items {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.box > h5 {
+  font-size: 1rem;
 }
 
-.items > a {
-  padding: 0 2rem;
-  color: #C8D3D5;
-}
-
-/* .shake {
-  animation: blinking 4s ease-in-out;
-}
-
-@keyframes blinking {
-  0%, 37.5%, 75%  {
-      color: white;
-  }
-  12.5%, 50%, 87.5% {
-      color: red;
-  }
-  25%, 62.5%, 100% {
-      color: white;
-  }
-} */
-/* @media screen and (min-width: 768px) {
-
-
-
-} */
 .body-shake {
   animation: shake 1.3s ease-in-out;
 }
@@ -179,46 +228,105 @@ label {
     transform: translate3d(5px, 0, 0);
   }
 }
-.red {
-  animation-delay: 1s !important;
-  animation: blinking 3s ease;
-}
-@keyframes blinking {
-  0%, 37.5%, 75%  {
-      color: white;
-  }
-  12.5%, 50%, 87.5% {
-      color: red;
-  }
-  25%, 62.5%, 100% {
-      color: white;
-  }
-}
 
-@media screen and (min-width: 992px) {
-  .main-container {
+/*------------------------------------
+FOOTER
+------------------------------------*/
+#footer {
+    background-color: #3acaf1;
+    height: 10vh;
+    width: 100vw;
+
+
     display: flex;
-    height: 100vh;
-  }
-
-  .left {
-    width: 60vw;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .right {
-      width: 40vw;
-  }
-
-  .logo > h1 {
-    font-size: 8rem;
+    align-items: center;
+    justify-content: center;
 }
 
-.registercontainer {
-  width: 60%;
-  margin: auto;
-}
+@media screen and (min-width: 768px) {
 
+    .main-container {
+        /* position: relative; */
+        /* height: 100vh; */
+        display: flex;
+        flex-direction: row;
+    }
+
+    .welcome {
+        padding: 0 3rem;
+        margin-bottom: auto;
+    }
+
+    .welcome > h1 {
+        font-size: 5rem;
+    }
+
+    .welcome > h2 {
+        font-size: 2rem;
+    }
+
+    #right {
+        margin-top: 3rem;
+        width: 50%;
+    }
+
+    #register {
+        width: 80%;
+    }
+
+
+    .log {
+     flex-direction: row;
+    }
+
+    .log > a {
+        font-size: 0.8rem;
+    }
+
+    form#login {
+  
+        align-items: flex-start;
+        margin-top: 0;
+        width: 50%;
+        padding: 2rem 0;
+    }
+
+    .nav {
+        margin-top: 50px;
+        flex-direction: column;
+    }
+
+    a {
+        font-size: 1rem;
+    }
+
+    .navlinks a:hover {
+        border-bottom: 2px solid white;
+
+    }
+
+    .navlinks {
+        margin-right: 50px;
+    }
+
+    #login>input[type=text]{
+        width: 100%;
+    }
+
+    .log>a {
+        text-decoration: none;
+        padding: 1rem;
+    }
+
+    .name-field {
+      display: flex;
+    }
+    .button {
+      width: 70%;
+    }
+    .form-control {
+      margin: 1rem .5rem;
+      padding: 1rem .5rem;
+    }
 
 }

@@ -1,10 +1,8 @@
 <% include apphead %>
-<%= user_name %>
-<%= user_email %>
-<%= company_name %>
 <body>
-    <div class="container">
-    <img src="<%= URL %>">
+    <div class="main-container">
+    <img class="app-logo" src="<%= URL %>">
+    <div class="next-container">
     <div class="login">
     <form action="/users/employee" method="post">
 
@@ -16,25 +14,10 @@
 
         <div class="button-div">
         <input type="submit" class="button" value="LOGIN">
-        <a href="/app" class="forgot">FORGOT<br>PASSWORD?</a>
         </div>
 
     </form>
     </div>
-    <div class="logo">
-        Insta.id
-    </div>
-    <div class="introduction">
-        <div class="intro-div">
-            WHO WE ARE
-        </div>
-        <div class="intro-div">
-            WHAT WE DO
-        </div>
-    </div>
-    </div>
-    <footer>
-        <a href="">ALREADY HAVE AN ACCOUNT?</a>
-    </footer>
+    
 </body>
 </html>

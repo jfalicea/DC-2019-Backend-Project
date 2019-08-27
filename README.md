@@ -11,21 +11,21 @@ From the responsive web-application employees can login and generate an exclusiv
 ![](usingadminpage.gif)
 
 ## How to deploy Insta.id
-Step 1: Clone repo 
-[screenshot]
-Step 2: From the directory you just cloned, install dependencies: 
-npm install 
-Step 3:  Create a ".evn" file:
-File defaults are the following: 
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=identifydb
-Step 4: Install postgres if not already installed
-https://www.postgresql.org/download/
-Step 4a: To build the required tables: 
-npm run db:reset
-Step 5: Browse to localhost:3000 (this is a default setting). 
-[screenshot]
+Step 1: Clone repo . 
+[screenshot]  
+Step 2: From the directory you just cloned, install dependencies:  
+npm install  
+Step 3:  Create a ".evn" file:  
+File defaults are the following:  
+DB_HOST=localhost . 
+DB_PORT=5432 . 
+DB_NAME=identifydb . 
+Step 4: Install postgres if not already installed . 
+https://www.postgresql.org/download/ . 
+Step 4a: To build the required tables:
+npm run db:reset . 
+Step 5: Browse to localhost:3000 (this is a default setting).  
+[screenshot] . 
     
 
 ## Technologies Utilized

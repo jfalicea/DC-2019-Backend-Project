@@ -3,10 +3,12 @@
 ## Description
 InstaId.xyz is a digital identification app that allows your clients/customers verify your employees while they are in the field.   The application's interface is split into two the employee web-app and the administrator dashboard.  
 From the Administrator's Dashboard admins can manage employees (basic CRUD functions) and update their current employment status.   
-[dashboard gif here]
+
+![](createaccountandlogin.gif)
+
 From the responsive web-application employees can login and generate an exclusive QR Code based for your client/customer to scan.  
-[employee app gif]
- 
+
+![](usingadminpage.gif)
 
 ## How to deploy Insta.id
 Step 1: Clone repo 

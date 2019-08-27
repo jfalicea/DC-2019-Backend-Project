@@ -25,9 +25,13 @@ DB_PORT=5432
 DB_NAME=identifydb
 ```
 Step 4: Install postgres if not already installed . 
-https://www.postgresql.org/download/ . 
+```
+https://www.postgresql.org/download/
+```
 Step 4a: To build the required tables:  
-```npm run db:reset```
+```
+npm run db:reset
+```
 Step 5: Browse to localhost:3000 (this is a default setting).  
 
 ## Technologies Utilized

@@ -38,8 +38,8 @@ Step 5: Browse to localhost:3000 (this is a default setting).
 * Node.js primary dependencies: 
   * Qrcode: https://www.npmjs.com/package/qrcode
   * Base64-img-promise:  https://www.npmjs.com/package/base64-img-promise
-  * Sweet Alert 2:  
-  * Pg-promise: 
+  * Sweet Alert 2: https://sweetalert2.github.io/
+  * Pg-promise: https://www.npmjs.com/package/pg-promise
  Postgres Database 
 * Express.js
   * Templating with EJS

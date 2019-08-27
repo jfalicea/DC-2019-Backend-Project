@@ -11,8 +11,7 @@ From the responsive web-application employees can login and generate an exclusiv
 ![](usingadminpage.gif)
 
 ## How to deploy Insta.id
-Step 1: Clone repo . 
-[screenshot]  
+Step 1: Clone repo
 Step 2: From the directory you just cloned, install dependencies:  
 ```javascript
 npm install

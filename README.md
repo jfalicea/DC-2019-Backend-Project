@@ -14,7 +14,9 @@ From the responsive web-application employees can login and generate an exclusiv
 Step 1: Clone repo . 
 [screenshot]  
 Step 2: From the directory you just cloned, install dependencies:  
-npm install  
+```javascript
+npm install
+```
 Step 3:  Create a ".evn" file:  
 File defaults are the following:  
 DB_HOST=localhost . 

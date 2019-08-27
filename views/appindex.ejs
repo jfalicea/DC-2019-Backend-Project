@@ -1,0 +1,23 @@
+<% include apphead %>
+<body>
+    <div class="main-container">
+    <img class="app-logo" src="<%= URL %>">
+    <div class="next-container">
+    <div class="login">
+    <form action="/users/employee" method="post">
+
+        <label>Email</label>
+        <input type="text" name="email" class="form-control" placeholder="email">
+
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" placeholder="password">
+
+        <div class="button-div">
+        <input type="submit" class="button" value="LOGIN">
+        </div>
+
+    </form>
+    </div>
+    
+</body>
+</html>

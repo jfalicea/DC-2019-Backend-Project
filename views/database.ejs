@@ -1,0 +1,193 @@
+<% include dbhead %>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<body>
+    <div class="main-container" id="<%= resume %>">
+    <% include navbar %>
+        <form class="hidden" id="input_form" action="/users/database/update" method="post">
+            <div class="make-flex">
+            <div class="input_fields">
+
+                <input type="text" name="first_name" class="form-control" placeholder="First Name">
+
+                <input type="text" name="last_name" class="form-control" placeholder="Last Name">
+
+                <input type="text" name="email" class="form-control"  placeholder="Email">
+
+                <select name="user_role" class="form-control">
+                    <option value="false">Employee</option>
+                    <option value="true">Admin</option>
+                </select>
+
+                <select name="emp_status" class="form-control">
+                    <option value="true">Active</option>
+                    <option value="false">Inactive</option>
+                </select>
+                <div class="button-div">
+                    <input type="submit" id="newfirst" value="SUBMIT">
+                </div>
+
+            </div>
+            <div class="password-field">
+                <input type="text" name="password" class="form-control" placeholder="Employee Password">
+            </div>
+            </div>
+        </form>
+        <div class="small-container">
+            <div class="label" id="<%= user_email %>">
+                Employees
+            </div>
+            <div class="row">
+                <div class="first-row">
+                    <div id="icon-col"></div>
+                    <div class="data-col">
+                        <div class="table-headers">
+                            First Name<hr>
+                        </div>
+                    </div>
+                    <div class="data-col">
+                        <div class="table-headers">
+                            Last Name<hr>
+                        </div>
+                    </div>
+                    <div class="data-col">
+                        <div class="table-headers">
+                            Email<hr>
+                        </div>
+                    </div>
+                    <div class="data-col">
+                        <div class="table-headers">
+                            User Role<hr>
+                        </div>
+                    </div>
+                    <div class="data-col">
+                        <div class="table-headers">
+                            Status<hr>
+                        </div>
+                    </div>
+                    <div id="icon-col"></div>
+                </div>
+            </div> 
+            <div class="database">  
+                    <!-- <div class="table-headers"> -->
+            <% userData.forEach(({ first_name, last_name, email, user_role, emp_status }) => { %>
+                <div class="row">
+                    <div id="icon-col">
+                        <a href="/users/remove/?first_name=<%= first_name %>&last_name=<%= last_name %>&email=<%= email %>" class="remove-data hidden" id="<%= email %>">
+                            <img src="https://cdn.pixabay.com/photo/2013/07/12/12/40/abort-146096_1280.png" width="10px" height="10px" id="remove-icon">
+                        </a>
+                    </div>
+                    <div class="data-col">
+                        <input class="data-change" value="<%= first_name %>" readonly>
+                    </div>
+                    <div class="data-col" contenteditable="true">
+                        <input class="data-change" value="<%= last_name %>" readonly>
+                    </div>
+                    <div class="data-col">
+                        <input class="data-change" value="<%= email %>" readonly>
+                    </div>
+                    <div class="data-col">
+                        <input class="data-change roles" id="<%= user_role %>" readonly>
+                    </div>
+                    <div class="data-col">
+                        <input class="data-change status" id="<%= emp_status %>" readonly>
+                    </div>
+                    <div id="icon-col">
+                    </div>
+                </div>               
+            <% }) %>
+            </div>
+        </div>
+    </div>
+<script>
+$(document).ready(function () {
+
+    const $toggles = $('form');
+    const $data = $('.remove-data');
+    const $page = $('.main-container');
+    const $self = $('.label');
+
+    const roles = document.querySelectorAll('.roles');
+    const status = document.querySelectorAll('.status');
+    const values = document.querySelectorAll('.remove-data');
+    const edits = document.querySelectorAll('.data-change');
+
+    values.forEach((value) => {
+   
+        if (value.id === $self.attr('id')) {
+            value.style.display = 'none'
+        }
+
+    });
+
+    roles.forEach((role) => {
+
+        if (role.id === 'true') {
+            role.setAttribute('value', 'Admin');
+        } else if (role.id === 'false') {
+            role.setAttribute('value', 'Employee');
+        }
+
+    });
+
+    status.forEach((status) => {
+
+        if (status.id === 'true') {
+            status.setAttribute('value', 'Active')
+        } else if (status.id === 'false') {
+            status.setAttribute('value', 'Inactive')
+        }
+
+    })
+
+    if ($page.attr('id') === 'true') {
+        $data.removeClass('hidden');
+        if ($data.hasClass('hidden')) {
+            $('#remove').removeClass('red');
+        } else {
+            $('#remove').addClass('red');
+        }
+    } else if ($page.attr('id') === 'true1') {
+        $toggles.removeClass('hidden');
+        if ($toggles.hasClass('hidden')) {
+            $('#add').removeClass('red');
+        } else {
+            $('#add').addClass('red');
+        }
+    };
+
+    const controlClick = (e) => {
+
+        const el = e.target;
+
+        if (el.id === 'add') {            
+            $toggles.toggleClass('hidden');
+            $('#add').toggleClass('red');
+        } else if (el.id === 'remove') {
+            $data.toggleClass('hidden');
+            if ($data.hasClass('hidden')) {
+                $('#remove').removeClass('red');
+            } else {
+                $('#remove').addClass('red');
+            }
+        } else if (el.id === 'update') {
+            $('#update').toggleClass('red');
+            if($('#update').hasClass('red') === true) {
+                $('.data-change').removeAttr('readonly');
+                $('.data-change').css('cursor','text')
+            } else {
+                $('.data-change').attr('readonly', 'true');
+                $('.data-change').css('cursor','default');
+            }
+        } else if (el.id === 'settings') {
+            $('#settings').toggleClass('red');
+        }
+
+    }
+
+
+    window.addEventListener('click', controlClick);
+
+});
+</script>
+</body>
+</html>

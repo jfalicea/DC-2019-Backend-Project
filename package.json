@@ -10,7 +10,7 @@
   "dependencies": {
     "base64-img": "^1.0.4",
     "base64-img-promise": "^1.0.5",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^8.1.0",
